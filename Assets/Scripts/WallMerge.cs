@@ -72,15 +72,14 @@ public class WallMerge : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Physics.Raycast(transform.position + (Vector3.up * .1f), transform.forward, out RaycastHit hit, 1))
+            if (Physics.Raycast(transform.position + (Vector3.up * 1f), transform.forward, out RaycastHit hit, 1))
             {
                 if (hit.transform.GetComponentInChildren<RaySearch>() != null)
                 {
                     RaySearch search = hit.transform.GetComponentInChildren<RaySearch>();
 
                     // 스페이스바 누르는 순간 플레이어 위치/방향 기준으로 포인트 재탐색
-                    // EdgeSearch 오브젝트를 움직이지 않고 직접 좌표를 넘겨줌
-                    Vector3 rayOrigin = transform.position + (Vector3.up * .1f);
+                    Vector3 rayOrigin = transform.position + (Vector3.up * 1f);
                     search.DoPointsFromPlayer(rayOrigin, transform.forward);
 
                     // 포인트가 없으면 중단
@@ -122,7 +121,11 @@ public class WallMerge : MonoBehaviour
     public void Transition(bool merge, Vector3 point, Vector3 normal)
     {
         Vector3 finalNormal = merge ? -normal : normal;
-        Vector3 finalPosition = merge ? point - new Vector3(0, .9f, 0) : point;
+        // 플레이어가 서있는 바닥 Y를 Raycast로 정확히 구해서 반영
+        float groundY = transform.position.y;
+        if (merge && Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit groundHit, 10f))
+            groundY = groundHit.point.y;
+        Vector3 finalPosition = merge ? new Vector3(point.x, groundY, point.z) : point;
         string animatorStatus = merge ? "turn" : "normal";
         float scale = merge ? .01f : playerZScale;
         float finalTransition = merge ? .5f : .3f;
@@ -157,7 +160,7 @@ public class WallMerge : MonoBehaviour
 
     void FrameMovement(Vector3 normal, Vector3 finalPosition, float finalTransition)
     {
-        frameQuad.position = transform.position + new Vector3(0, .85f, 0) - (transform.forward * .5f);
+        frameQuad.position = transform.position + new Vector3(0, 1f, 0) - (transform.forward * .5f);
         frameQuad.forward = -normal;
 
         // Unity 6 URP/HDRP Material property 접근 방식
@@ -167,7 +170,7 @@ public class WallMerge : MonoBehaviour
 
         frameRenderer.material.SetColor(colorProperty, Color.clear);
         frameRenderer.material.DOColor(frameLitColor, colorProperty, 1f).SetDelay(.3f);
-        frameQuad.DOMove(finalPosition + new Vector3(0, .85f, 0) - (transform.forward * .05f), finalTransition).SetEase(Ease.InBack).SetDelay(.2f);
+        frameQuad.DOMove(finalPosition + new Vector3(0, 1f, 0) - (transform.forward * .05f), finalTransition).SetEase(Ease.InBack).SetDelay(.2f);
     }
 
     Vector3 GetClosestPoint(Vector3[] points, Vector3 currentPoint)
@@ -190,7 +193,7 @@ public class WallMerge : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.black;
-        Gizmos.DrawRay(transform.position + (Vector3.up * .1f), transform.forward);
+        Gizmos.DrawRay(transform.position + (Vector3.up * 1f), transform.forward);
         Gizmos.DrawSphere(closestCorner, .2f);
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(previousCorner, .2f);
