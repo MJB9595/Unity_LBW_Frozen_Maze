@@ -2,12 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using DG.Tweening;
-
-// Unity 6 (6000.3.11f1) Compatible Version
-// Cinemachine 3.x API 기준으로 수정됨
-// Cinemachine 3.x 에서는 CinemachineBrain, CinemachineImpulseSource 네임스페이스가 변경됨
-// Package Manager에서 com.unity.cinemachine 3.x 설치 필요
-
 using Unity.Cinemachine;
 
 public class WallMerge : MonoBehaviour
@@ -48,23 +42,32 @@ public class WallMerge : MonoBehaviour
     public Volume dofVolume;
     public Volume zoomVolume;
 
-    // Unity 6 / Cinemachine 3.x: CinemachineBrain은 여전히 Camera에 붙어있지만 네임스페이스 변경
     private CinemachineBrain brain;
+
+    [Space]
+    [Header("Decal Layer Isolation")]
+    [Tooltip("DecalProjector Rendering Layer Mask와 일치하는 인덱스.\n" +
+             "Light Layer 1 = 1, Light Layer 2 = 2 ...")]
+    [Range(0, 7)]
+    public int decalRenderingLayerIndex = 1;
+
+    // 현재 합체된 벽 렌더러 + 원본 Layer 백업
+    private MeshRenderer[] currentWallRenderers;
+    private uint[]         originalWallLayerMasks;
 
     private void Start()
     {
-        playerAnimator = GetComponent<Animator>();
-        playerMovement = GetComponent<MovementInput>();
+        playerAnimator   = GetComponent<Animator>();
+        playerMovement   = GetComponent<MovementInput>();
         playerController = GetComponent<CharacterController>();
 
-        // Cinemachine 3.x: Camera.main에서 CinemachineBrain 가져오기
         if (Camera.main != null)
         {
-            brain = Camera.main.GetComponent<CinemachineBrain>();
+            brain         = Camera.main.GetComponent<CinemachineBrain>();
             impulseSource = Camera.main.GetComponent<CinemachineImpulseSource>();
         }
 
-        playerZScale = transform.GetChild(0).localScale.z;
+        playerZScale  = transform.GetChild(0).localScale.z;
         frameRenderer = frameQuad.GetComponent<Renderer>();
     }
 
@@ -78,29 +81,31 @@ public class WallMerge : MonoBehaviour
                 {
                     RaySearch search = hit.transform.GetComponentInChildren<RaySearch>();
 
-                    // 스페이스바 누르는 순간 플레이어 위치/방향 기준으로 포인트 재탐색
                     Vector3 rayOrigin = transform.position + (Vector3.up * 1f);
                     search.DoPointsFromPlayer(rayOrigin, transform.forward);
 
-                    // 포인트가 없으면 중단
                     if (search.cornerPoints.Count == 0)
                         return;
 
                     List<Vector3> cornerPoints = new List<Vector3>();
-
                     for (int i = 0; i < search.cornerPoints.Count; i++)
                         cornerPoints.Add(search.cornerPoints[i].position);
 
                     closestCorner = GetClosestPoint(cornerPoints.ToArray(), hit.point);
                     int index = search.cornerPoints.FindIndex(x => x.position == closestCorner);
 
-                    nextCorner = (index < search.cornerPoints.Count - 1) ? search.cornerPoints[index + 1].position : search.cornerPoints[0].position;
-                    previousCorner = (index > 0) ? search.cornerPoints[index - 1].position : search.cornerPoints[search.cornerPoints.Count - 1].position;
+                    nextCorner = (index < search.cornerPoints.Count - 1)
+                        ? search.cornerPoints[index + 1].position
+                        : search.cornerPoints[0].position;
+                    previousCorner = (index > 0)
+                        ? search.cornerPoints[index - 1].position
+                        : search.cornerPoints[search.cornerPoints.Count - 1].position;
 
-                    chosenCorner = Vector3.Dot((closestCorner - hit.point), (nextCorner - hit.point)) > 0 ? previousCorner : nextCorner;
+                    chosenCorner = Vector3.Dot((closestCorner - hit.point), (nextCorner - hit.point)) > 0
+                        ? previousCorner : nextCorner;
                     bool nextCornerIsRight = isRightSide(-hit.normal, chosenCorner - closestCorner, Vector3.up);
 
-                    float distance = Vector3.Distance(closestCorner, chosenCorner);
+                    float distance  = Vector3.Distance(closestCorner, chosenCorner);
                     float playerDis = Vector3.Distance(chosenCorner, hit.point);
 
                     if (playerDis > (distance - decalMovement.distanceToTurn))
@@ -112,25 +117,70 @@ public class WallMerge : MonoBehaviour
 
                     decalMovement.SetPosition(closestCorner, chosenCorner, positionLerp, search, nextCornerIsRight, hit.normal);
 
+                    // ★ Fix: WallMerge 참조 주입
+                    decalMovement.wallMerge = this;
+
+                    // ★ Fix: 합체된 벽에 Layer 적용 후,
+                    //         ProjectorMovement의 lastWallObject를 즉시 동기화
+                    //         → TrackCurrentWall이 첫 프레임에 잘못된 오브젝트를 건드리지 않음
+                    ApplyDecalLayerToWall(hit.collider.gameObject);
+                    decalMovement.lastWallObject = hit.collider.gameObject;
+
                     Transition(true, Vector3.Lerp(closestCorner, chosenCorner, positionLerp), hit.normal);
                 }
             }
         }
     }
 
+    // ── Decal Layer 제어 ────────────────────────────────────────
+
+    public void ApplyDecalLayerToWall(GameObject wallObject)
+    {
+        RestoreWallLayer();
+
+        if (wallObject == null) return;
+
+        var renderers        = wallObject.GetComponentsInChildren<MeshRenderer>();
+        currentWallRenderers  = renderers;
+        originalWallLayerMasks = new uint[renderers.Length];
+
+        uint bit = 1u << decalRenderingLayerIndex;
+
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            originalWallLayerMasks[i]        = renderers[i].renderingLayerMask;
+            renderers[i].renderingLayerMask |= bit;
+        }
+    }
+
+    public void RestoreWallLayer()
+    {
+        if (currentWallRenderers == null) return;
+
+        for (int i = 0; i < currentWallRenderers.Length; i++)
+            if (currentWallRenderers[i] != null)
+                currentWallRenderers[i].renderingLayerMask = originalWallLayerMasks[i];
+
+        currentWallRenderers   = null;
+        originalWallLayerMasks = null;
+    }
+
+    // ────────────────────────────────────────────────────────────
+
     public void Transition(bool merge, Vector3 point, Vector3 normal)
     {
-        Vector3 finalNormal = merge ? -normal : normal;
-        // 플레이어가 서있는 바닥 Y를 Raycast로 정확히 구해서 반영
-        float groundY = transform.position.y;
+        Vector3 finalNormal   = merge ? -normal : normal;
+        float   groundY       = transform.position.y;
+
         if (merge && Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit groundHit, 10f))
             groundY = groundHit.point.y;
-        Vector3 finalPosition = merge ? new Vector3(point.x, groundY, point.z) : point;
-        string animatorStatus = merge ? "turn" : "normal";
-        float scale = merge ? .01f : playerZScale;
-        float finalTransition = merge ? .5f : .3f;
 
-        if (merge == true)
+        Vector3 finalPosition   = merge ? new Vector3(point.x, groundY, point.z) : point;
+        string  animatorStatus  = merge ? "turn" : "normal";
+        float   scale           = merge ? .01f : playerZScale;
+        float   finalTransition = merge ? .5f  : .3f;
+
+        if (merge)
             FrameMovement(normal, finalPosition, finalTransition);
 
         transform.forward = finalNormal;
@@ -138,18 +188,23 @@ public class WallMerge : MonoBehaviour
         PlayerActivation(merge);
         MergeSequence(merge, finalPosition, scale, finalTransition);
 
-        float dofDelay = merge ? finalTransition + .3f : 0;
+        float dofDelay  = merge ? finalTransition + .3f : 0;
         float dofAmount = merge ? 1 : 0;
         DOVirtual.Float(dofVolume.weight, dofAmount, finalTransition, DofPostVolume).SetDelay(dofDelay);
+
         if (merge)
-            DOVirtual.Float(zoomVolume.weight, 1, .7f, ZoomVolume).OnComplete(() => DOVirtual.Float(zoomVolume.weight, 0, .3f, ZoomVolume));
+            DOVirtual.Float(zoomVolume.weight, 1, .7f, ZoomVolume)
+                     .OnComplete(() => DOVirtual.Float(zoomVolume.weight, 0, .3f, ZoomVolume));
+
+        if (!merge)
+            RestoreWallLayer();
     }
 
     void PlayerActivation(bool active)
     {
-        if (active == true)
+        if (active)
         {
-            playerMovement.enabled = false;
+            playerMovement.enabled   = false;
             playerController.enabled = false;
         }
         else
@@ -161,31 +216,25 @@ public class WallMerge : MonoBehaviour
     void FrameMovement(Vector3 normal, Vector3 finalPosition, float finalTransition)
     {
         frameQuad.position = transform.position + new Vector3(0, 1f, 0) - (transform.forward * .5f);
-        frameQuad.forward = -normal;
+        frameQuad.forward  = -normal;
 
-        // Unity 6 URP/HDRP Material property 접근 방식
-        // HDRP: "_UnlitColor" → URP: "_BaseColor" or "_Color"
-        // 사용하는 렌더 파이프라인에 맞게 아래 프로퍼티 이름을 변경하세요
-        string colorProperty = "_UnlitColor"; // HDRP Unlit: "_UnlitColor", URP Unlit: "_BaseColor"
-
+        string colorProperty = "_UnlitColor";
         frameRenderer.material.SetColor(colorProperty, Color.clear);
         frameRenderer.material.DOColor(frameLitColor, colorProperty, 1f).SetDelay(.3f);
-        frameQuad.DOMove(finalPosition + new Vector3(0, 1f, 0) - (transform.forward * .05f), finalTransition).SetEase(Ease.InBack).SetDelay(.2f);
+        frameQuad.DOMove(
+            finalPosition + new Vector3(0, 1f, 0) - (transform.forward * .05f),
+            finalTransition).SetEase(Ease.InBack).SetDelay(.2f);
     }
 
     Vector3 GetClosestPoint(Vector3[] points, Vector3 currentPoint)
     {
-        Vector3 pMin = Vector3.zero;
-        float minDist = Mathf.Infinity;
+        Vector3 pMin    = Vector3.zero;
+        float   minDist = Mathf.Infinity;
 
         foreach (Vector3 p in points)
         {
             float dist = Vector3.Distance(p, currentPoint);
-            if (dist < minDist)
-            {
-                pMin = p;
-                minDist = dist;
-            }
+            if (dist < minDist) { pMin = p; minDist = dist; }
         }
         return pMin;
     }
@@ -204,19 +253,11 @@ public class WallMerge : MonoBehaviour
     public bool isRightSide(Vector3 fwd, Vector3 targetDir, Vector3 up)
     {
         Vector3 right = Vector3.Cross(up.normalized, fwd.normalized);
-        float dir = Vector3.Dot(right, targetDir.normalized);
-        return dir > 0f;
+        return Vector3.Dot(right, targetDir.normalized) > 0f;
     }
 
-    public void DofPostVolume(float x)
-    {
-        dofVolume.weight = x;
-    }
-
-    public void ZoomVolume(float x)
-    {
-        zoomVolume.weight = x;
-    }
+    public void DofPostVolume(float x) { dofVolume.weight  = x; }
+    public void ZoomVolume(float x)    { zoomVolume.weight = x; }
 
     Sequence MergeSequence(bool merge, Vector3 finalPosition, float scale, float finalTransition)
     {
@@ -226,21 +267,27 @@ public class WallMerge : MonoBehaviour
             s.AppendInterval(.2f);
         else
             s.AppendCallback(() => decalMovement.exitParticle.Play());
+
         s.AppendCallback(() => gameCam.SetActive(!merge));
         s.AppendCallback(() => wallCam.SetActive(merge));
         s.Append(transform.DOMove(finalPosition, finalTransition).SetEase(Ease.InBack));
         s.Join(transform.GetChild(0).DOScaleZ(scale, finalTransition).SetEase(Ease.InSine));
+
         if (merge)
             s.AppendCallback(() => playerMovement.gameObject.SetActive(false));
+
         s.AppendCallback(() => decalMovement.transform.GetChild(0).gameObject.SetActive(merge));
         s.AppendCallback(() => decalMovement.mergeParticle.Play());
-        if (merge == true && impulseSource != null)
+
+        if (merge && impulseSource != null)
             s.AppendCallback(() => impulseSource.GenerateImpulse());
-        if (merge == false)
+
+        if (!merge)
         {
-            s.AppendCallback(() => playerMovement.enabled = true);
+            s.AppendCallback(() => playerMovement.enabled   = true);
             s.AppendCallback(() => playerController.enabled = true);
         }
+
         s.AppendCallback(() => decalMovement.isActive = merge);
         s.Append(frameRenderer.material.DOColor(Color.clear, "_UnlitColor", 1));
 
