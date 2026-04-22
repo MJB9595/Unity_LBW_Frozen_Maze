@@ -1,7 +1,7 @@
-﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class ProjectorMovement : MonoBehaviour
 {
@@ -47,10 +47,25 @@ public class ProjectorMovement : MonoBehaviour
     [HideInInspector] public GameObject lastWallObject;
 
     private Vector3 savedNormal;
+    private bool isPortalTransition;
 
     private void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        
+        // 파티클이 캐릭터 이동 시 따라다니며 뭉치는 현상을 막기 위해 Simulation Space를 World로 강제 고정합니다.
+        if (mergeParticle != null)
+        {
+            var main = mergeParticle.main;
+            main.simulationSpace = ParticleSystemSimulationSpace.World;
+        }
+        if (exitParticle != null)
+        {
+            var main = exitParticle.main;
+            main.simulationSpace = ParticleSystemSimulationSpace.World;
+            // 텍스처 겹침으로 인한 하얀 섬광(눈뽕) 현상을 줄이기 위해 색상을 검보라색으로 강제 변경합니다.
+            main.startColor = new ParticleSystem.MinMaxGradient(new Color(0.2f, 0.0f, 0.3f, 1.0f)); 
+        }
     }
 
     public void SetPosition(Vector3 orig, Vector3 target, float lerp, RaySearch ray, bool nextCornerIsRight, Vector3 normal)
@@ -75,6 +90,11 @@ public class ProjectorMovement : MonoBehaviour
 
     private void Update()
     {
+       if (Input.GetKeyDown(KeyCode.Q))
+        {
+            foreach (var r in FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None))
+                Debug.Log($"[MASK] {r.gameObject.name}: {r.renderingLayerMask}");
+        }
         DebugKey();
 
         if (Input.GetKeyDown(KeyCode.Space) && isActive)
@@ -111,8 +131,13 @@ public class ProjectorMovement : MonoBehaviour
             if (axis != 0 && !activation)
                 activation = true;
 
-            if (Vector3.Distance(transform.position, originPos) > (Vector3.Distance(originPos, targetPos) - distanceToTurn)
-                || Vector3.Distance(transform.position, originPos) < distanceToTurn)
+            // 현재 위치가 각 코너(targetPos 또는 originPos)에 근접했는지 확인
+            bool nearTarget = Vector3.Distance(transform.position, originPos) > (Vector3.Distance(originPos, targetPos) - distanceToTurn);
+            bool nearOrigin = Vector3.Distance(transform.position, originPos) < distanceToTurn;
+
+            // 코너에 가까이 있으면서, 그 코너를 향해 '계속 전진'할 때만 회전을 시작하도록 제한
+            // (코너 근처에서 반대 방향으로 돌아서는 경우에는 회전이 발동하지 않아 날아가는 버그 방지)
+            if ((nearTarget && axis > 0) || (nearOrigin && axis < 0))
             {
                 StartRotation(axis > 0);
             }
@@ -123,6 +148,11 @@ public class ProjectorMovement : MonoBehaviour
         if (rotationMode && !movementMode && isActive)
         {
             CornerRoration(axis);
+            TrackCurrentWall();
+        }
+
+        if (wallMerge != null && (movementMode || rotationMode))
+        {
             TrackCurrentWall();
         }
 
@@ -139,26 +169,23 @@ public class ProjectorMovement : MonoBehaviour
     /// </summary>
     void TrackCurrentWall()
     {
-        if (wallMerge == null) return;
+        if (wallMerge == null || search == null) return;
 
-        // ★ Bug 1 수정: -transform.forward (벽 안쪽 방향)
-        // transform.forward = hit.normal (벽 바깥 방향)이므로
-        // 반대로 쏴야 현재 붙어있는 벽에 맞습니다.
         if (!Physics.Raycast(transform.position, -transform.forward, out RaycastHit hit, 1.5f))
             return;
 
-        GameObject hitRoot  = hit.collider.transform.root.gameObject;
-        GameObject lastRoot = lastWallObject != null
-            ? lastWallObject.transform.root.gameObject
-            : null;
+        RaySearch hitSearch = hit.collider.transform.root.GetComponentInChildren<RaySearch>();
+        if (hitSearch == null || hitSearch != search)
+            return;
 
-        // 같은 오브젝트면 아무것도 하지 않음
-        if (hitRoot == lastRoot) return;
+        Debug.Log($"[TrackCurrentWall] 통과 - hit: {hit.collider.gameObject.name} (root: {hit.collider.transform.root.name})");
 
-        // 다른 오브젝트로 넘어갔을 때만 Layer 이전
+        if (hit.collider.gameObject == lastWallObject) return;
+
         wallMerge.ApplyDecalLayerToWall(hit.collider.gameObject);
         lastWallObject = hit.collider.gameObject;
     }
+
 
     public void StartRotation(bool right)
     {
@@ -175,6 +202,42 @@ public class ProjectorMovement : MonoBehaviour
 
         rotationLerp = .01f;
         rotationMode = true;
+
+        isPortalTransition = false;
+
+        // 회전하는 중심축(pivot) 반경 0.5m 내에 GapTrigger(틈새 식별용 스크립트)가 겹쳐 있는지 확인합니다.
+        // 유니티 에디터에서 배치한 트리거 구역에 들어오면 확정적으로 포탈 연출이 발동합니다.
+        Collider[] colliders = Physics.OverlapSphere(pivot.position, 0.5f);
+        foreach (Collider col in colliders)
+        {
+            if (col.GetComponent<GapTrigger>() != null)
+            {
+                isPortalTransition = true;
+                break;
+            }
+        }
+
+        if (isPortalTransition)
+        {
+            Transform decalVisual = transform.GetChild(0);
+
+            // 1. 데칼 찌그러진 후 완전히 끄기 (왜곡 효과와 함께 사라짐)
+            decalVisual.DOScaleX(0f, 0.15f).SetEase(Ease.InBack).OnComplete(() => {
+                decalVisual.gameObject.SetActive(false);
+            });
+
+            // 2. 포스트 프로세싱 줌/블러 효과 적용
+            if (wallMerge.zoomVolume != null)
+                DOVirtual.Float(wallMerge.zoomVolume.weight, 1f, 0.2f, wallMerge.ZoomVolume);
+            if (wallMerge.dofVolume != null)
+                DOVirtual.Float(wallMerge.dofVolume.weight, 1f, 0.2f, wallMerge.DofPostVolume);
+
+            // 3. 파티클 재생 (World 설정으로 인해 부모 분리 불필요)
+            if (mergeParticle != null)
+            {
+                mergeParticle.Play();
+            }
+        }
     }
 
     public void CornerRoration(float axis)
@@ -209,6 +272,28 @@ public class ProjectorMovement : MonoBehaviour
             transform.parent = null;
             movementMode     = true;
             rotationLerp     = .01f;
+
+            // --- Portal Transition Effect End ---
+            if (isPortalTransition)
+            {
+                Transform decalVisual = transform.GetChild(0);
+
+                // 1. 데칼 다시 켜고 원래 크기(1)로 튕기며 복구
+                decalVisual.gameObject.SetActive(true);
+                decalVisual.DOScaleX(1f, 0.2f).SetEase(Ease.OutBack);
+
+                // 2. 포스트 프로세싱 효과 복구
+                if (wallMerge.zoomVolume != null)
+                    DOVirtual.Float(wallMerge.zoomVolume.weight, 0f, 0.2f, wallMerge.ZoomVolume);
+                if (wallMerge.dofVolume != null)
+                    DOVirtual.Float(wallMerge.dofVolume.weight, 0f, 0.2f, wallMerge.DofPostVolume);
+
+                // 3. 검보라색으로 설정된 탈출 파티클 재생
+                if (exitParticle != null)
+                {
+                    exitParticle.Play();
+                }
+            }
         }
     }
 

@@ -46,13 +46,13 @@ public class WallMerge : MonoBehaviour
 
     [Space]
     [Header("Decal Layer Isolation")]
-    [Tooltip("DecalProjector Rendering Layer Mask와 일치하는 인덱스.\n" +
-             "Light Layer 1 = 1, Light Layer 2 = 2 ...")]
+    [Tooltip("DecalProjector의 Decal Layer 슬롯 번호 (0~7).\n" +
+             "예) DecalLayer1 → 1 입력 / DecalLayer2 → 2 입력")]
     [Range(0, 7)]
     public int decalRenderingLayerIndex = 1;
 
     // 현재 합체된 벽 렌더러 + 원본 Layer 백업
-    private MeshRenderer[] currentWallRenderers;
+    private Renderer[] currentWallRenderers;
     private uint[]         originalWallLayerMasks;
 
     private void Start()
@@ -69,10 +69,28 @@ public class WallMerge : MonoBehaviour
 
         playerZScale  = transform.GetChild(0).localScale.z;
         frameRenderer = frameQuad.GetComponent<Renderer>();
+
+        RemoveDecalLayerFromAllWalls();
+    }
+
+    /// 씬 내 RaySearch를 가진 모든 벽 오브젝트의 renderingLayerMask에서
+    /// MergedWallDecal 비트를 제거합니다. 기본값이 uint.MaxValue이기 때문에 필요합니다.
+
+    void RemoveDecalLayerFromAllWalls()
+    {
+        uint decalBit = 1u << (decalRenderingLayerIndex + 8);
+        uint clearMask = ~decalBit;
+
+        Renderer[] allRenderers = FindObjectsByType<Renderer>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (Renderer r in allRenderers)
+        {
+            r.renderingLayerMask &= clearMask;
+        }
     }
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (Physics.Raycast(transform.position + (Vector3.up * 1f), transform.forward, out RaycastHit hit, 1))
@@ -134,24 +152,30 @@ public class WallMerge : MonoBehaviour
 
     // ── Decal Layer 제어 ────────────────────────────────────────
 
+
     public void ApplyDecalLayerToWall(GameObject wallObject)
     {
         RestoreWallLayer();
-
         if (wallObject == null) return;
 
-        var renderers        = wallObject.GetComponentsInChildren<MeshRenderer>();
-        currentWallRenderers  = renderers;
+        var renderers          = wallObject.GetComponentsInChildren<Renderer>();
+        currentWallRenderers   = renderers;
         originalWallLayerMasks = new uint[renderers.Length];
 
-        uint bit = 1u << decalRenderingLayerIndex;
+        uint bit = 1u << (decalRenderingLayerIndex + 8);
 
         for (int i = 0; i < renderers.Length; i++)
         {
-            originalWallLayerMasks[i]        = renderers[i].renderingLayerMask;
+            uint before = renderers[i].renderingLayerMask;
+            originalWallLayerMasks[i]        = before;
             renderers[i].renderingLayerMask |= bit;
+            uint after = renderers[i].renderingLayerMask;
+
+            Debug.Log($"[ApplyDecal] obj={wallObject.name} | renderer={renderers[i].name} | before={before} → after={after} | bit={bit}");
         }
     }
+
+
 
     public void RestoreWallLayer()
     {
@@ -164,6 +188,7 @@ public class WallMerge : MonoBehaviour
         currentWallRenderers   = null;
         originalWallLayerMasks = null;
     }
+
 
     // ────────────────────────────────────────────────────────────
 
@@ -181,7 +206,11 @@ public class WallMerge : MonoBehaviour
         float   finalTransition = merge ? .5f  : .3f;
 
         if (merge)
-            FrameMovement(normal, finalPosition, finalTransition);
+        {
+            // ... (기존 로직이 있었다면 유지)
+        }
+        
+        FrameMovement(normal, finalPosition, finalTransition, merge);
 
         transform.forward = finalNormal;
         playerAnimator.SetTrigger(animatorStatus);
@@ -213,17 +242,42 @@ public class WallMerge : MonoBehaviour
         }
     }
 
-    void FrameMovement(Vector3 normal, Vector3 finalPosition, float finalTransition)
+    void FrameMovement(Vector3 normal, Vector3 finalPosition, float finalTransition, bool merge)
     {
-        frameQuad.position = transform.position + new Vector3(0, 1f, 0) - (transform.forward * .5f);
-        frameQuad.forward  = -normal;
+        // 너무 밝게(눈뽕) 빛나는 현상을 방지하기 위해 기본 색상의 알파(투명도)값을 40%로 확 낮춥니다.
+        if (frameLitColor.a == 0) frameLitColor = new Color(1f, 1f, 1f, 0.1f);
 
         string colorProperty = "_UnlitColor";
+        
+        // 기존 진행 중인 트윈(애니메이션) 강제 종료하여 꼬임 방지
+        frameRenderer.material.DOKill();
+        frameQuad.DOKill();
+
         frameRenderer.material.SetColor(colorProperty, Color.clear);
-        frameRenderer.material.DOColor(frameLitColor, colorProperty, 1f).SetDelay(.3f);
-        frameQuad.DOMove(
-            finalPosition + new Vector3(0, 1f, 0) - (transform.forward * .05f),
-            finalTransition).SetEase(Ease.InBack).SetDelay(.2f);
+
+        if (merge)
+        {
+            // 들어갈 때: 캐릭터 위치에서 시작해서 벽으로 날아감
+            frameQuad.position = transform.position + new Vector3(0, 1f, 0) - (transform.forward * .5f);
+            frameQuad.forward  = -normal;
+
+            frameQuad.DOMove(
+                finalPosition + new Vector3(0, 1f, 0) - (transform.forward * .05f),
+                finalTransition).SetEase(Ease.InBack).SetDelay(.2f);
+        }
+        else
+        {
+            // 나올 때: 캐릭터가 있던 벽의 그 위치에 프레임이 남아서 나타남
+            frameQuad.position = transform.position + new Vector3(0, 1f, 0) - (normal * .05f);
+            frameQuad.forward  = -normal;
+        }
+
+        // 프레임 페이드인 -> 유지 -> 페이드아웃 애니메이션 시퀀스
+        Sequence frameSeq = DOTween.Sequence();
+        frameSeq.AppendInterval(0.2f);
+        frameSeq.Append(frameRenderer.material.DOColor(frameLitColor, colorProperty, 0.4f)); // 서서히 나타남
+        frameSeq.AppendInterval(0.5f); // 잠깐 유지
+        frameSeq.Append(frameRenderer.material.DOColor(Color.clear, colorProperty, 0.8f));   // 다시 사라짐
     }
 
     Vector3 GetClosestPoint(Vector3[] points, Vector3 currentPoint)
@@ -289,7 +343,7 @@ public class WallMerge : MonoBehaviour
         }
 
         s.AppendCallback(() => decalMovement.isActive = merge);
-        s.Append(frameRenderer.material.DOColor(Color.clear, "_UnlitColor", 1));
+        // 프레임 페이드아웃은 FrameMovement 내부 시퀀스로 통합했으므로 여기서 삭제합니다.
 
         return s;
     }
