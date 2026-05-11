@@ -346,5 +346,5 @@ public class WallMerge : MonoBehaviour
         // 프레임 페이드아웃은 FrameMovement 내부 시퀀스로 통합했으므로 여기서 삭제합니다.
 
         return s;
-    }
-}
+        }
+        }

@@ -1,0 +1,15 @@
+{
+    "asset": "e415c8cd507b647f3b72e80458a8f461",
+    "fileName": "019dfc82-8e26-7119-8367-2578e170d246.wav",
+    "prompt": "Hissing steam release, high pressure air escaping, industrial vent, loopable feel",
+    "negativePrompt": "",
+    "model": "elevenlabs-sound-effects-v2",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "duration": 3.0,
+    "autoTrim": false,
+    "hasReference": false,
+    "voice": ""
+}

@@ -1,0 +1,23 @@
+{
+    "asset": "69819405b99c44a62b47b71dc34ac3a7",
+    "fileName": "019e066c-9f1e-7f83-ab3e-8c99c2214b2e.glb",
+    "prompt": "medieval wooden trapdoor with iron hinges and a ring handle, weathered wood, flat rectangular shape for floor placement, matching the provided reference image",
+    "negativePrompt": "",
+    "model": "model3d-tripo-p1",
+    "modelName": "Tripo P1",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "promptImageReferenceGuid": "052cc43cb57714c6d93b4735783428b0",
+    "modelReferenceGuid": "",
+    "multiviewFrontGuid": "",
+    "multiviewBackGuid": "",
+    "multiviewLeftGuid": "",
+    "multiviewRightGuid": "",
+    "multiviewTopGuid": "",
+    "multiviewBottomGuid": "",
+    "multiviewLeftFrontGuid": "",
+    "multiviewRightFrontGuid": "",
+    "faceLimit": -1
+}

@@ -1,0 +1,15 @@
+{
+    "asset": "465af8d87d86a466c9a931242d742475",
+    "fileName": "019dfc82-84b3-760e-9c67-eca7bbabd9e5.wav",
+    "prompt": "Popping magical sound, character popping out of a wall, release, soft landing",
+    "negativePrompt": "",
+    "model": "elevenlabs-sound-effects-v2",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "duration": 1.0,
+    "autoTrim": false,
+    "hasReference": false,
+    "voice": ""
+}

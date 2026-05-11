@@ -13,6 +13,8 @@ public class RaySearch : MonoBehaviour
     public List<MeshPoint> meshPoints = new List<MeshPoint>();
     public List<MeshPoint> cornerPoints = new List<MeshPoint>();
 
+    private Vector3 lastNormalForCorner;
+
     List<Vector3[]> debugTangentCheck = new List<Vector3[]>();
     List<Vector3[]> debugNegativeCheck = new List<Vector3[]>();
     List<Vector3[]> debugBehindCheck = new List<Vector3[]>();
@@ -43,18 +45,24 @@ public class RaySearch : MonoBehaviour
     void FindNext(Vector3 pt, Vector3 normal)
     {
         MeshPoint mp = new MeshPoint(); mp.position = pt; mp.normal = normal;
+        MeshPoint mpnew = new MeshPoint(); mpnew.position = pt; mpnew.normal = normal;
 
-        if (meshPoints.Count > 1)
+        if (meshPoints.Count == 0)
         {
-            MeshPoint mpnew = new MeshPoint(); mpnew.position = pt; mpnew.normal = normal;
-
+            cornerPoints.Add(mpnew);
+            lastNormalForCorner = normal;
+        }
+        else if (!cornerCheck)
+        {
             if (cornerPoints.Count > 0)
-                if (Vector3.Distance(cornerPoints[0].position, mpnew.position) < .3f && cornerPoints[0].normal == normal)
+                if (Vector3.Distance(cornerPoints[0].position, mpnew.position) < .3f && Vector3.Dot(cornerPoints[0].normal, normal) > .99f)
                     cornerCheck = true;
 
-            // Debug.Log 제거 - 매 스텝마다 찍혀서 콘솔 폭주하던 원인
-            if (Vector3.Dot(meshPoints[meshPoints.Count - 1].normal, normal) < .98f && !cornerCheck)
+            if (Vector3.Dot(lastNormalForCorner, normal) < .98f && !cornerCheck)
+            {
                 cornerPoints.Add(mpnew);
+                lastNormalForCorner = normal;
+            }
         }
 
         meshPoints.Add(mp);
@@ -103,6 +111,7 @@ public class RaySearch : MonoBehaviour
     void ResetLists()
     {
         cornerCheck = false;
+        lastNormalForCorner = Vector3.zero;
         meshPoints.Clear();
         cornerPoints.Clear();
         debugTangentCheck.Clear();

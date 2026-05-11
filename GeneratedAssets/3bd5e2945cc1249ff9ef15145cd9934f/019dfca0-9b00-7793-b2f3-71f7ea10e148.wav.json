@@ -1,0 +1,15 @@
+{
+    "asset": "3bd5e2945cc1249ff9ef15145cd9934f",
+    "fileName": "019dfca0-9b00-7793-b2f3-71f7ea10e148.wav",
+    "prompt": "magical 2D to 3D transition sound, magical pop out from a wall, bright chime release, magical transformation return, single quick sound effect, distinct from footsteps",
+    "negativePrompt": "",
+    "model": "elevenlabs-sound-effects-v2",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "duration": 1.0,
+    "autoTrim": false,
+    "hasReference": false,
+    "voice": ""
+}

@@ -372,11 +372,10 @@ public class ProjectorMovement : MonoBehaviour
         LineLineIntersection(out inter, lineRef1.position, lineRef1.forward, lineRef2.position, lineRef2.forward);
         Gizmos.DrawSphere(inter, .1f);
 
-        // 벽 추적 레이 시각화 (씬 뷰에서 확인용)
         if (isActive)
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawRay(transform.position, -transform.forward * 1.5f);
         }
     }
-}
+    }

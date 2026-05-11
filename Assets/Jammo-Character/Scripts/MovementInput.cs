@@ -122,15 +122,16 @@ public class MovementInput : MonoBehaviour
         InputZ = Input.GetAxis("Vertical");
 
         Speed = new Vector2(InputX, InputZ).sqrMagnitude;
+        float clampedSpeed = Mathf.Clamp01(Speed);
 
         if (Speed > allowPlayerRotation)
         {
-            anim.SetFloat("Blend", Speed, StartAnimTime, Time.deltaTime);
+            anim.SetFloat("Blend", clampedSpeed, StartAnimTime, Time.deltaTime);
             PlayerMoveAndRotation();
         }
         else if (Speed < allowPlayerRotation)
         {
-            anim.SetFloat("Blend", Speed, StopAnimTime, Time.deltaTime);
+            anim.SetFloat("Blend", 0f, StopAnimTime, Time.deltaTime);
         }
     }
 }

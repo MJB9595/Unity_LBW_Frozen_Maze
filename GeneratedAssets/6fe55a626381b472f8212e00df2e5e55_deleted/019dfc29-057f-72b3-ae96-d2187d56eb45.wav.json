@@ -1,0 +1,15 @@
+{
+    "asset": "6fe55a626381b472f8212e00df2e5e55",
+    "fileName": "019dfc29-057f-72b3-ae96-d2187d56eb45.wav",
+    "prompt": "Ethereal magical suction sound, character merging into a wall, mystery, soft impact",
+    "negativePrompt": "",
+    "model": "elevenlabs-sound-effects-v2",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "duration": 1.0,
+    "autoTrim": false,
+    "hasReference": false,
+    "voice": ""
+}

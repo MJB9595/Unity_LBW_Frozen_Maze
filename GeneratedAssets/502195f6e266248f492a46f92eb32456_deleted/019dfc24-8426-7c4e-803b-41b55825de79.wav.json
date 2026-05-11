@@ -1,0 +1,15 @@
+{
+    "asset": "502195f6e266248f492a46f92eb32456",
+    "fileName": "019dfc24-8426-7c4e-803b-41b55825de79.wav",
+    "prompt": "Light robotic mechanical footstep click on stone floor",
+    "negativePrompt": "",
+    "model": "elevenlabs-sound-effects-v2",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "duration": 1.0,
+    "autoTrim": false,
+    "hasReference": false,
+    "voice": ""
+}

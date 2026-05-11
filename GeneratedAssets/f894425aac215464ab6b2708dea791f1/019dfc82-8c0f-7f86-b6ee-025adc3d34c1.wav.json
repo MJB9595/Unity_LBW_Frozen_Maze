@@ -1,0 +1,15 @@
+{
+    "asset": "f894425aac215464ab6b2708dea791f1",
+    "fileName": "019dfc82-8c0f-7f86-b6ee-025adc3d34c1.wav",
+    "prompt": "Magical portal activation chime, shimmering ethereal transition sound, whoosh with light sparkles",
+    "negativePrompt": "",
+    "model": "elevenlabs-sound-effects-v2",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "duration": 2.0,
+    "autoTrim": false,
+    "hasReference": false,
+    "voice": ""
+}

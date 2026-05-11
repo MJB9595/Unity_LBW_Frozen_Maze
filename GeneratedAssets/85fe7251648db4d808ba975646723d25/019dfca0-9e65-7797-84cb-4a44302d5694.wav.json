@@ -1,0 +1,15 @@
+{
+    "asset": "85fe7251648db4d808ba975646723d25",
+    "fileName": "019dfca0-9e65-7797-84cb-4a44302d5694.wav",
+    "prompt": "magical shimmering zing sound, high pitched fantasy sound effect, painting merge effect, Zelda A Link Between Worlds style, quick magical transition, single effect",
+    "negativePrompt": "",
+    "model": "elevenlabs-sound-effects-v2",
+    "modelName": "ElevenLabs Sound Effects V2",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "duration": 1.0,
+    "autoTrim": false,
+    "hasReference": false,
+    "voice": ""
+}
