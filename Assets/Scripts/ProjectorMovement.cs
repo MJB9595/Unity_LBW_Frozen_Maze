@@ -196,7 +196,22 @@ public class ProjectorMovement : MonoBehaviour
         currentIndex = search.cornerPoints.FindIndex(
             x => x.position == (right ? targetPos : originPos));
 
-        pivot.position   = GetPivotPosition(currentIndex, right);
+        Vector3 newPivotPos = GetPivotPosition(currentIndex, right);
+
+        // ── 안전망: pivot이 비정상적으로 먼 위치라면 회전 자체를 포기하고 이동 모드 유지 ──
+        // GetPivotPosition 내부에 이미 fallback이 있지만, 어떤 경로로든 비합리적 좌표가
+        // 나오면 데칼이 텔레포트하는 것보다 회전을 포기하는 게 훨씬 낫다. 50m는 정상적인
+        // 회전축으로 절대 도달할 수 없는 거리이므로 거짓양성 위험이 거의 없다.
+        const float kMaxPivotDistFromDecal = 50f;
+        if (Vector3.Distance(newPivotPos, transform.position) > kMaxPivotDistFromDecal ||
+            float.IsNaN(newPivotPos.x))
+        {
+            Debug.LogWarning($"[ProjectorMovement] StartRotation aborted: pivot {newPivotPos} too far from decal {transform.position}. Staying in movement mode.");
+            movementMode = true;
+            return;
+        }
+
+        pivot.position   = newPivotPos;
         pivot.forward    = transform.forward;
         transform.parent = pivot;
 
@@ -324,10 +339,28 @@ public class ProjectorMovement : MonoBehaviour
         lineRef2.forward = savedNormal;
 
         Vector3 intersection;
-        LineLineIntersection(
+        bool ok = LineLineIntersection(
             out intersection,
             lineRef1.position, lineRef1.forward,
             lineRef2.position, lineRef2.forward);
+
+        // ── 안전망: 평행 라인(원기둥 곡면 코너) 케이스 방어 ─────────────────
+        // LineLineIntersection은 두 라인이 거의 평행이면 false를 반환하면서 intersection을
+        // Vector3.zero로 둔다. 그대로 쓰면 데칼이 월드 원점으로 텔레포트하므로, 결과가
+        // 비합리적이면 코너 점 자체를 폴백으로 사용한다.
+        // 원본 동작은 그대로 유지하면서 텔레포트 케이스만 잡는 가드.
+        const float kMaxReasonableDistFromCorner = 50f;
+        bool intersectionIsBad = !ok
+            || float.IsNaN(intersection.x) || float.IsInfinity(intersection.x)
+            || Vector3.Distance(intersection, pos) > kMaxReasonableDistFromCorner;
+
+        if (intersectionIsBad)
+        {
+            // 코너 위치 그대로 사용. 원본 의도(distanceToTurn만큼 떨어진 정확한 회전축)와는
+            // 약간 다르지만, 원기둥처럼 인접 면이 거의 평행한 곡면에서는 코너 자체가 가장
+            // 안정적인 회전축이 된다. 더 중요한 것: 절대 텔레포트하지 않는다.
+            intersection = pos;
+        }
 
         return intersection;
     }

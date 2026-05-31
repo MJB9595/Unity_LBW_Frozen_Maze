@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 10222,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://scene/gameobject/62022/component/Mario64Camera",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":null,\"error\":null,\"data\":{\"gameObjectID\":62022,\"gameObjectName\":\"Main Camera\",\"component\":{\"typeName\":\"Mario64Camera\",\"instanceID\":62036,\"properties\":{\"target\":{\"name\":\"Jammo_Player\",\"instanceID\":64062},\"lookAtHeight\":1.5,\"distance\":10.0,\"height\":6.5,\"minDistance\":1.5,\"positionSmoothTime\":0.30000001192092896,\"rotationDamping\":3.0,\"heightDamping\":2.0,\"collisionRadius\":0.30000001192092896,\"collisionLayers\":{\"value\":-1},\"collisionDamping\":0.15000000596046448,\"recoveryDamping\":0.5,\"teleportThreshold\":3.0,\"fieldOfView\":40.0}}},\"hint\":null}"
+      }
+    ]
+  }
+}

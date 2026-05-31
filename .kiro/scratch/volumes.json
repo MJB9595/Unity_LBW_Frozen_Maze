@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 29592,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://scene/volumes",
+        "mimeType": "text/plain",
+        "text": "{\"success\":false,\"message\":null,\"error\":\"Error listing volumes: The variable sharedProfile of Volume doesn't exist anymore.\\nYou probably need to reassign the sharedProfile variable of the 'Volume' script in the inspector.\",\"data\":null,\"hint\":null}"
+      }
+    ]
+  }
+}

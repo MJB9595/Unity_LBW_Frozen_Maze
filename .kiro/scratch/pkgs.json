@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json,sys;print(json.dumps({'name':sys.argv[1],'arguments':json.loads(sys.argv[2])}))
+                                                                     ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 348, in decode
+    raise JSONDecodeError("Extra data", s, end)
+json.decoder.JSONDecodeError: Extra data: line 1 column 18 (char 17)
+{"jsonrpc":"2.0","id":"server-error","error":{"code":-32700,"message":"Parse error: Expecting value: line 1 column 60 (char 59)"}}

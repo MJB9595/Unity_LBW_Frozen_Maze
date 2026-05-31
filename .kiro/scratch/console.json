@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1703539114,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "4 validation errors for call[read_console]\ntypes.list[literal['error','warning','log','all']].0\n  Input should be 'error', 'warning', 'log' or 'all' [type=literal_error, input_value='Error', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ntypes.list[literal['error','warning','log','all']].1\n  Input should be 'error', 'warning', 'log' or 'all' [type=literal_error, input_value='Warning', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/literal_error\ntypes.str\n  Input should be a valid string [type=string_type, input_value=['Error', 'Warning'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.13/v/string_type\nmax_results\n  Unexpected keyword argument [type=unexpected_keyword_argument, input_value=50, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.13/v/unexpected_keyword_argument"
+      }
+    ],
+    "isError": true
+  }
+}

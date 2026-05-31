@@ -1,0 +1,29 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2126731555,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Retrieved 10 log entries.\",\"data\":[\"[McpToolRegistry] Discovered 20 MCP tools\",\"[McpToolRegistry] Available tools: Unity_ApplyTextEdits, Unity_CreateScript, Unity_DeleteScript, Unity_FindInFile, Unity_GetSha, Unity_ImportExternalModel, Unity_ListResources, Unity_ManageAsset, Unity_ManageEditor, Unity_ManageGameObject, Unity_ManageMenuItem, Unity_ManageScene, Unity_ManageScript, Unity_ManageScript_capabilities, Unity_ManageShader, Unity_ReadConsole, Unity_ReadResource, Unity_RunCommand, Unity_ScriptApplyEdits, Unity_ValidateScript\",\"[Idle]\",\"This project uses Input Manager, which is marked for deprecation. To manage input in your project, use the <a href=\\\"https://docs.unity3d.com/Packages/com.unity.inputsystem@latest\\\">Input System package</a> instead.\",\"[Start]\",\"Set umask to 077 for secure socket creation\",\"Created Unix socket with fd=118\",\"Bound Unix socket to /tmp/unity-mcp-4109763d-28717\",\"Set socket permissions to 0600: /tmp/unity-mcp-4109763d-28717\",\"Listening on Unix socket: /tmp/unity-mcp-4109763d-28717\"]}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Retrieved 10 log entries.",
+      "data": [
+        "[McpToolRegistry] Discovered 20 MCP tools",
+        "[McpToolRegistry] Available tools: Unity_ApplyTextEdits, Unity_CreateScript, Unity_DeleteScript, Unity_FindInFile, Unity_GetSha, Unity_ImportExternalModel, Unity_ListResources, Unity_ManageAsset, Unity_ManageEditor, Unity_ManageGameObject, Unity_ManageMenuItem, Unity_ManageScene, Unity_ManageScript, Unity_ManageScript_capabilities, Unity_ManageShader, Unity_ReadConsole, Unity_ReadResource, Unity_RunCommand, Unity_ScriptApplyEdits, Unity_ValidateScript",
+        "[Idle]",
+        "This project uses Input Manager, which is marked for deprecation. To manage input in your project, use the <a href=\"https://docs.unity3d.com/Packages/com.unity.inputsystem@latest\">Input System package</a> instead.",
+        "[Start]",
+        "Set umask to 077 for secure socket creation",
+        "Created Unix socket with fd=118",
+        "Bound Unix socket to /tmp/unity-mcp-4109763d-28717",
+        "Set socket permissions to 0600: /tmp/unity-mcp-4109763d-28717",
+        "Listening on Unix socket: /tmp/unity-mcp-4109763d-28717"
+      ]
+    },
+    "isError": false
+  }
+}

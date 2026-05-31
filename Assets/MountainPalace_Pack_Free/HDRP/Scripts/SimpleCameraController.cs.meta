@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2ba7993c3f443b04c8f1acdd2a7280e7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153961
+  packageName: MountainPalace Pack
+  packageVersion: 1.0
+  assetPath: Assets/MountainPalace_Pack_Free/HDRP/Scripts/SimpleCameraController.cs
+  uploadId: 436134

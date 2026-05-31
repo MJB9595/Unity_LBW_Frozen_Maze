@@ -1,0 +1,31 @@
+{
+  "jsonrpc": "2.0",
+  "id": 100443969,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Retrieved scenes from Build Settings.\",\"data\":[{\"path\":\"Assets/Stage_1.unity\",\"guid\":\"9618325823149413385336518301c564\",\"enabled\":true,\"buildIndex\":0},{\"path\":\"Assets/WallMerge_FinalImport/Scenes/WallMerge_Scene.unity\",\"guid\":\"4be45ccb6ebbd5c4a99517bd501f59b3\",\"enabled\":true,\"buildIndex\":1}]}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Retrieved scenes from Build Settings.",
+      "data": [
+        {
+          "path": "Assets/Stage_1.unity",
+          "guid": "9618325823149413385336518301c564",
+          "enabled": true,
+          "buildIndex": 0
+        },
+        {
+          "path": "Assets/WallMerge_FinalImport/Scenes/WallMerge_Scene.unity",
+          "guid": "4be45ccb6ebbd5c4a99517bd501f59b3",
+          "enabled": true,
+          "buildIndex": 1
+        }
+      ]
+    },
+    "isError": false
+  }
+}

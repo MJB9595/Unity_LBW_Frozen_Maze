@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 14398,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://scene/gameobject/64198/component/WallMerge",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":null,\"error\":null,\"data\":{\"gameObjectID\":64198,\"gameObjectName\":\"Jammo_Player\",\"component\":{\"typeName\":\"WallMerge\",\"instanceID\":61332,\"properties\":{\"mergeMode\":1,\"transitionTime\":0.800000011920929,\"decalMovement\":{\"name\":\"ProjectorController\",\"instanceID\":61084},\"frameQuad\":{\"name\":\"Frame\",\"instanceID\":59674},\"frameLitColor\":{\"r\":0.0,\"g\":0.0,\"b\":0.0,\"a\":0.0},\"gameCam\":{\"name\":\"NormalCam\",\"instanceID\":59712},\"wallCam\":{\"name\":\"WallCam\",\"instanceID\":61560},\"mario64Cam\":{\"name\":\"Main Camera\",\"instanceID\":62036},\"dofVolume\":{\"name\":\"Post Process Volume\",\"instanceID\":60460},\"zoomVolume\":{\"name\":\"ZoomProfile\",\"instanceID\":60628},\"decalRenderingLayerIndex\":1}}},\"hint\":null}"
+      }
+    ]
+  }
+}

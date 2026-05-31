@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 15732,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://scene/gameobject/61078/component/ProjectorMovement",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":null,\"error\":null,\"data\":{\"gameObjectID\":61078,\"gameObjectName\":\"ProjectorController\",\"component\":{\"typeName\":\"ProjectorMovement\",\"instanceID\":61084,\"properties\":{\"movSpeed\":3.0,\"rotSpeed\":2.0,\"rotationLerp\":0.0,\"distanceToTurn\":1.0,\"isActive\":false,\"movementMode\":false,\"rotationMode\":false,\"isGoingRight\":false,\"isMoving\":false,\"player\":{\"name\":\"Jammo_Player\",\"instanceID\":61332},\"pivot\":{\"name\":\"pivot\",\"instanceID\":59492},\"lineRef1\":{\"name\":\"p1\",\"instanceID\":59506},\"lineRef2\":{\"name\":\"p2\",\"instanceID\":63176},\"mergeParticle\":{\"name\":\"Particle System\",\"instanceID\":64004},\"exitParticle\":{\"name\":\"Particle System (1)\",\"instanceID\":61320},\"wallMerge\":null,\"lastWallObject\":null}}},\"hint\":null}"
+      }
+    ]
+  }
+}

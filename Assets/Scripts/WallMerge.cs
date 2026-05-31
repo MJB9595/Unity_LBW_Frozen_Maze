@@ -6,6 +6,14 @@ using Unity.Cinemachine;
 
 public class WallMerge : MonoBehaviour
 {
+    public enum WallMergeMode
+    {
+        [InspectorName("Legacy (구버전)")]
+        Legacy,
+        [InspectorName("Current (신버전)")]
+        Current
+    }
+
     private Animator playerAnimator;
     private CharacterController playerController;
     private MovementInput playerMovement;
@@ -14,6 +22,11 @@ public class WallMerge : MonoBehaviour
     private Vector3 previousCorner;
     private Vector3 chosenCorner;
     private float playerZScale;
+
+    [Header("Mode")]
+    [Tooltip("Legacy: repomix-output-origin 기준 구버전 코너 탐색 알고리즘\n" +
+             "Current: 현재 최신버전 (lastNormalForCorner 기반)")]
+    public WallMergeMode mergeMode = WallMergeMode.Current;
 
     [Header("Parameters")]
     public float transitionTime = .8f;
@@ -35,6 +48,7 @@ public class WallMerge : MonoBehaviour
     [Header("Cameras")]
     public GameObject gameCam;
     public GameObject wallCam;
+    public Mario64Camera mario64Cam;
 
     [Space]
 
@@ -88,8 +102,16 @@ public class WallMerge : MonoBehaviour
         }
     }
 
+    // 진입/탈출 시퀀스가 끝나기 전에 다시 Space가 눌리지 않도록 막아주는 가드
+    private bool transitionInProgress;
+
     void Update()
     {
+
+        // 가드: 이미 벽화 상태이거나 진입 시퀀스 진행 중이면 새 진입을 시도하지 않는다.
+        // 벽화 상태에서의 Space 처리(탈출)는 ProjectorMovement.Update가 담당한다.
+        if (transitionInProgress) return;
+        if (decalMovement != null && decalMovement.isActive) return;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -98,6 +120,9 @@ public class WallMerge : MonoBehaviour
                 if (hit.transform.GetComponentInChildren<RaySearch>() != null)
                 {
                     RaySearch search = hit.transform.GetComponentInChildren<RaySearch>();
+
+                    // 선택된 모드를 RaySearch에 전달
+                    search.mergeMode = this.mergeMode;
 
                     Vector3 rayOrigin = transform.position + (Vector3.up * 1f);
                     search.DoPointsFromPlayer(rayOrigin, transform.forward);
@@ -194,6 +219,9 @@ public class WallMerge : MonoBehaviour
 
     public void Transition(bool merge, Vector3 point, Vector3 normal)
     {
+        // 진입/탈출 시퀀스 동안 새 입력을 막아 이중 진입을 방지
+        transitionInProgress = true;
+
         Vector3 finalNormal   = merge ? -normal : normal;
         float   groundY       = transform.position.y;
 
@@ -324,6 +352,12 @@ public class WallMerge : MonoBehaviour
 
         s.AppendCallback(() => gameCam.SetActive(!merge));
         s.AppendCallback(() => wallCam.SetActive(merge));
+        if (mario64Cam != null)
+        {
+            s.AppendCallback(() => mario64Cam.enabled = !merge);
+            if (!merge)
+                s.AppendCallback(() => mario64Cam.BeginCollisionGrace(1.2f));
+        }
         s.Append(transform.DOMove(finalPosition, finalTransition).SetEase(Ease.InBack));
         s.Join(transform.GetChild(0).DOScaleZ(scale, finalTransition).SetEase(Ease.InSine));
 
@@ -343,7 +377,9 @@ public class WallMerge : MonoBehaviour
         }
 
         s.AppendCallback(() => decalMovement.isActive = merge);
-        // 프레임 페이드아웃은 FrameMovement 내부 시퀀스로 통합했으므로 여기서 삭제합니다.
+
+        // 시퀀스가 모두 끝나면 진입/탈출 가드를 해제 — 이제 새 Space 입력을 받을 수 있다.
+        s.AppendCallback(() => transitionInProgress = false);
 
         return s;
         }

@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 24780,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://scene/gameobject/63476",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":null,\"error\":null,\"data\":{\"instanceID\":63476,\"name\":\"EdgeSearch\",\"tag\":\"Untagged\",\"layer\":0,\"layerName\":\"Default\",\"active\":true,\"activeInHierarchy\":true,\"isStatic\":false,\"transform\":{\"position\":{\"x\":1030.61,\"y\":1.0,\"z\":-3.46999979},\"localPosition\":{\"x\":0.63,\"y\":1.0,\"z\":-1.39},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"localRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"scale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"lossyScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0}},\"parent\":63966,\"children\":[],\"componentTypes\":[\"Transform\",\"RaySearch\"],\"path\":\"Cube (2)/EdgeSearch\"},\"hint\":null}"
+      }
+    ]
+  }
+}

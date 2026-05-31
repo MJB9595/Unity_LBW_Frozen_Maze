@@ -1,0 +1,30 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1759371745,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Found GameObjects\",\"data\":{\"instanceIDs\":[61972,62684,63476,63042],\"pageSize\":50,\"cursor\":0,\"nextCursor\":null,\"totalCount\":4,\"hasMore\":false}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Found GameObjects",
+      "data": {
+        "instanceIDs": [
+          61972,
+          62684,
+          63476,
+          63042
+        ],
+        "pageSize": 50,
+        "cursor": 0,
+        "nextCursor": null,
+        "totalCount": 4,
+        "hasMore": false
+      }
+    },
+    "isError": false
+  }
+}

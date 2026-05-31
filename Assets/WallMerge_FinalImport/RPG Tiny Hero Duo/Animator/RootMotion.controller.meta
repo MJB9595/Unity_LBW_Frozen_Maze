@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3a2c3c404e9284867ad4c3eff24b0ba4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 225148
+  packageName: RPG Tiny Hero Duo PBR Polyart
+  packageVersion: 2.0
+  assetPath: Assets/RPG Tiny Hero Duo/Animator/RootMotion.controller
+  uploadId: 521528

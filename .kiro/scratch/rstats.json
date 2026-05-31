@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 9679,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://rendering/stats",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":\"Rendering stats captured.\",\"error\":null,\"data\":{\"draw_calls\":0,\"batches\":0,\"set_pass_calls\":0,\"triangles\":0,\"vertices\":0,\"dynamic_batches\":0,\"dynamic_batched_draw_calls\":0,\"static_batches\":0,\"static_batched_draw_calls\":0,\"instanced_batches\":0,\"instanced_batched_draw_calls\":0,\"shadow_casters\":0,\"render_textures\":172,\"render_textures_bytes\":655915498,\"used_textures\":0,\"used_textures_bytes\":0,\"render_target_changes\":0,\"visible_skinned_meshes\":28},\"hint\":null}"
+      }
+    ]
+  }
+}

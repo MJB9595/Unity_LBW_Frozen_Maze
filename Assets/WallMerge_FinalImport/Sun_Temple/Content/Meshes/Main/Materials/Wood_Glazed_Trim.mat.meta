@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5a23a43b0d4a74c2985d1c22aefbdd83
+timeCreated: 1504605028
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 115417
+  packageName: Sun Temple
+  packageVersion: 1.0
+  assetPath: Assets/Sun_Temple/Content/Meshes/Main/Materials/Wood_Glazed_Trim.mat
+  uploadId: 241457

@@ -1,0 +1,1 @@
+{"action":"set_property","target":61078,"component_type":"ProjectorMovement","properties":{"movSpeed":3.0,"rotSpeed":2.0,"distanceToTurn":1.0,"inputDeadzone":0.15,"modeChangeCooldown":0.08}}

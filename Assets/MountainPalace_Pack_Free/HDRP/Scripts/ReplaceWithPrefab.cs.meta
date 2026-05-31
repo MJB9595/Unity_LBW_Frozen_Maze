@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 35a11f501c6db044faada46e3023670b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153961
+  packageName: MountainPalace Pack
+  packageVersion: 1.0
+  assetPath: Assets/MountainPalace_Pack_Free/HDRP/Scripts/ReplaceWithPrefab.cs
+  uploadId: 436134

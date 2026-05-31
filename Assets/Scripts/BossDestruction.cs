@@ -139,6 +139,23 @@ public class BossDestruction : MonoBehaviour
             mf.sharedMesh = readableMesh;
         }
 
+        // Pre-flight check: OpenFracture's ConstrainedTriangulator can fail on degenerate or
+        // very small meshes. Skip these gracefully instead of throwing in the middle of slicing.
+        if (mf == null || mf.sharedMesh == null)
+            return;
+
+        var sharedMesh = mf.sharedMesh;
+        if (sharedMesh.vertexCount < 12 || sharedMesh.triangles.Length < 12)
+        {
+            // Too few verts/tris — bail out quietly. Use a Decal instead if visual feedback is needed.
+            return;
+        }
+
+        // Reject zero/near-zero scale meshes
+        Vector3 lossy = obj.transform.lossyScale;
+        if (Mathf.Abs(lossy.x) < 0.01f || Mathf.Abs(lossy.y) < 0.01f || Mathf.Abs(lossy.z) < 0.01f)
+            return;
+
         Fracture fracture = obj.GetComponent<Fracture>();
         if (fracture == null)
         {
@@ -161,7 +178,29 @@ public class BossDestruction : MonoBehaviour
             fracture.callbackOptions = new CallbackOptions();
         }
 
-        fracture.CauseFracture();
+        // OpenFracture의 ConstrainedTriangulator가 일부 메시(non-manifold, 자가 교차, T-junction 등)에서
+        // "Failed to find final triangle" 같은 워닝과 함께 실패할 수 있다. 이게 게임 로직을 막진 않지만
+        // 콘솔이 시끄러워지므로 try/catch로 감싸 안전하게 처리한다.
+        try
+        {
+            fracture.CauseFracture();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"[BossDestruction] Fracture failed on '{obj.name}': {e.Message}. Falling back to crack decal.");
+            ApplyCrackDecal(obj);
+            return;
+        }
+
+        // fragmentRoot가 null이거나 자식이 없으면 OpenFracture 내부에서 부분 실패한 것.
+        // 이런 경우 데칼만이라도 남기고 원본 오브젝트는 비활성화한다.
+        if (fracture.fragmentRoot == null || fracture.fragmentRoot.transform.childCount == 0)
+        {
+            Debug.LogWarning($"[BossDestruction] Fracture produced no fragments on '{obj.name}'. Falling back to crack decal.");
+            ApplyCrackDecal(obj);
+            if (impulseSource != null) impulseSource.GenerateImpulse();
+            return;
+        }
 
         if (fracture.fragmentRoot != null)
         {

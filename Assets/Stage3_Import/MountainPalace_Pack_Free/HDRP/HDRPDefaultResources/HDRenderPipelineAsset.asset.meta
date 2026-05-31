@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6ff9a764e90934ea789d1cb43893ee53
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153961
+  packageName: MountainPalace Pack
+  packageVersion: 1.0
+  assetPath: Assets/MountainPalace_Pack_Free/HDRP/HDRPDefaultResources/HDRenderPipelineAsset.asset
+  uploadId: 436134

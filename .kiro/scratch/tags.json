@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 8847,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://project/tags",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":\"Retrieved current tags.\",\"error\":null,\"data\":[\"Untagged\",\"Respawn\",\"Finish\",\"EditorOnly\",\"MainCamera\",\"Player\",\"GameController\",\"PlayerEyes\"],\"hint\":null}"
+      }
+    ]
+  }
+}

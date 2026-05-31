@@ -17,91 +17,175 @@ MonoBehaviour:
       lastSelectedModels:
         serializedData:
         - key:
-            rid: 3837136408378081633
+            rid: 3837136792763236557
           value:
-            rid: 3837136408378081634
+            rid: 3837136792763236558
         - key:
-            rid: 3837136408378081635
+            rid: 3837136792763236559
           value:
-            rid: 3837136408378081636
+            rid: 3837136792763236560
         - key:
-            rid: 3837136408378081637
+            rid: 3837136792763236561
           value:
-            rid: 3837136408378081638
+            rid: 3837136792763236562
         - key:
-            rid: 3837136408378081639
+            rid: 3837136792763236563
           value:
-            rid: 3837136408378081640
+            rid: 3837136792763236564
         - key:
-            rid: 3837136408378081641
+            rid: 3837136792763236565
           value:
-            rid: 3837136408378081642
+            rid: 3837136792763236566
         - key:
-            rid: 3837136408378081643
+            rid: 3837136792763236567
           value:
-            rid: 3837136408378081644
+            rid: 3837136792763236568
+        - key:
+            rid: 3837136792763236569
+          value:
+            rid: 3837136792763236570
+        - key:
+            rid: 3837136792763236571
+          value:
+            rid: 3837136792763236572
+        - key:
+            rid: 3837136792763236573
+          value:
+            rid: 3837136792763236574
+        - key:
+            rid: 3837136792763236575
+          value:
+            rid: 3837136792763236576
+        - key:
+            rid: 3837136792763236577
+          value:
+            rid: 3837136792763236578
+        - key:
+            rid: 3837136792763236579
+          value:
+            rid: 3837136792763236580
       previewSettings:
         sizeFactor: 2
   references:
     version: 2
     RefIds:
-    - rid: 3837136408378081633
+    - rid: 3837136792763236557
       type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
         asm: Unity.AI.Image}
       data:
         modality: Image
         mode: 0
-    - rid: 3837136408378081634
+    - rid: 3837136792763236558
       type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
       data:
-        modelID: gemini-3.1-flash-texture
-    - rid: 3837136408378081635
+        modelID: skybox-cinematic
+    - rid: 3837136792763236559
       type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
         asm: Unity.AI.Image}
       data:
         modality: Image
         mode: 1
-    - rid: 3837136408378081636
+    - rid: 3837136792763236560
       type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
       data:
         modelID: 
-    - rid: 3837136408378081637
+    - rid: 3837136792763236561
       type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
         asm: Unity.AI.Image}
       data:
         modality: Image
         mode: 2
-    - rid: 3837136408378081638
+    - rid: 3837136792763236562
       type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
       data:
         modelID: 
-    - rid: 3837136408378081639
+    - rid: 3837136792763236563
       type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
         asm: Unity.AI.Image}
       data:
         modality: Image
         mode: 3
-    - rid: 3837136408378081640
+    - rid: 3837136792763236564
       type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
       data:
         modelID: 
-    - rid: 3837136408378081641
+    - rid: 3837136792763236565
       type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
         asm: Unity.AI.Image}
       data:
         modality: Image
         mode: 4
-    - rid: 3837136408378081642
+    - rid: 3837136792763236566
       type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
       data:
         modelID: 
-    - rid: 3837136408378081643
+    - rid: 3837136792763236567
       type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
         asm: Unity.AI.Image}
       data:
         modality: Video
         mode: 6
-    - rid: 3837136408378081644
+    - rid: 3837136792763236568
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: 
+    - rid: 3837136792763236569
+      type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
+        asm: Unity.AI.Image}
+      data:
+        modality: Skybox
+        mode: 0
+    - rid: 3837136792763236570
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: skybox-cinematic
+    - rid: 3837136792763236571
+      type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
+        asm: Unity.AI.Image}
+      data:
+        modality: Skybox
+        mode: 1
+    - rid: 3837136792763236572
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: 
+    - rid: 3837136792763236573
+      type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
+        asm: Unity.AI.Image}
+      data:
+        modality: Skybox
+        mode: 2
+    - rid: 3837136792763236574
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: 
+    - rid: 3837136792763236575
+      type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
+        asm: Unity.AI.Image}
+      data:
+        modality: Skybox
+        mode: 3
+    - rid: 3837136792763236576
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: 
+    - rid: 3837136792763236577
+      type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
+        asm: Unity.AI.Image}
+      data:
+        modality: Skybox
+        mode: 4
+    - rid: 3837136792763236578
+      type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
+      data:
+        modelID: 
+    - rid: 3837136792763236579
+      type: {class: LastSelectedModelKey, ns: Unity.AI.Image.Services.Stores.States,
+        asm: Unity.AI.Image}
+      data:
+        modality: Skybox
+        mode: 6
+    - rid: 3837136792763236580
       type: {class: ModelSelection, ns: Unity.AI.Image.Services.Stores.States, asm: Unity.AI.Image}
       data:
         modelID: 

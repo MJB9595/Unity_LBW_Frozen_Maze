@@ -10,8 +10,12 @@ public class RaySearch : MonoBehaviour
     public float offsetMargin = 0.01f;
     public int checkCountMax = 100;
     private bool cornerCheck = false;
+    public bool IsClosedLoop => cornerCheck;
     public List<MeshPoint> meshPoints = new List<MeshPoint>();
     public List<MeshPoint> cornerPoints = new List<MeshPoint>();
+
+    // WallMerge에서 주입하는 모드 (Inspector에서는 보이지 않음)
+    [System.NonSerialized] public WallMerge.WallMergeMode mergeMode = WallMerge.WallMergeMode.Current;
 
     private Vector3 lastNormalForCorner;
 
@@ -45,23 +49,43 @@ public class RaySearch : MonoBehaviour
     void FindNext(Vector3 pt, Vector3 normal)
     {
         MeshPoint mp = new MeshPoint(); mp.position = pt; mp.normal = normal;
-        MeshPoint mpnew = new MeshPoint(); mpnew.position = pt; mpnew.normal = normal;
 
-        if (meshPoints.Count == 0)
+        if (mergeMode == WallMerge.WallMergeMode.Current)
         {
-            cornerPoints.Add(mpnew);
-            lastNormalForCorner = normal;
-        }
-        else if (!cornerCheck)
-        {
-            if (cornerPoints.Count > 0)
-                if (Vector3.Distance(cornerPoints[0].position, mpnew.position) < .3f && Vector3.Dot(cornerPoints[0].normal, normal) > .99f)
-                    cornerCheck = true;
+            // ▸ Current (신버전) — lastNormalForCorner 기반, 첫 포인트 무조건 코너 등록
+            MeshPoint mpnew = new MeshPoint(); mpnew.position = pt; mpnew.normal = normal;
 
-            if (Vector3.Dot(lastNormalForCorner, normal) < .98f && !cornerCheck)
+            if (meshPoints.Count == 0)
             {
                 cornerPoints.Add(mpnew);
                 lastNormalForCorner = normal;
+            }
+            else if (!cornerCheck)
+            {
+                if (cornerPoints.Count > 0)
+                    if (Vector3.Distance(cornerPoints[0].position, mpnew.position) < .3f && Vector3.Dot(cornerPoints[0].normal, normal) > .99f)
+                        cornerCheck = true;
+
+                if (Vector3.Dot(lastNormalForCorner, normal) < .98f && !cornerCheck)
+                {
+                    cornerPoints.Add(mpnew);
+                    lastNormalForCorner = normal;
+                }
+            }
+        }
+        else
+        {
+            // ▸ Legacy (구버전) — 인접 포인트 기준, 첫 포인트 스킵
+            if (meshPoints.Count > 1)
+            {
+                MeshPoint mpnew = new MeshPoint(); mpnew.position = pt; mpnew.normal = normal;
+
+                if (cornerPoints.Count > 0)
+                    if (Vector3.Distance(cornerPoints[0].position, mpnew.position) < .3f && cornerPoints[0].normal == normal)
+                        cornerCheck = true;
+
+                if (Vector3.Dot(meshPoints[meshPoints.Count - 1].normal, normal) < .98f && !cornerCheck)
+                    cornerPoints.Add(mpnew);
             }
         }
 

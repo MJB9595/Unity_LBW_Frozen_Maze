@@ -1,0 +1,1 @@
+{"action":"set_property","target":62022,"component_type":"Mario64Camera","properties":{"distance":6.0,"height":2.5,"minDistance":1.5,"lookAtHeight":1.5,"yawSmoothTime":0.2,"positionSmoothTime":0.15,"heightSmoothTime":0.3,"collisionRadius":0.3,"collisionDamping":0.08,"recoveryDamping":0.6,"teleportThreshold":3.0,"fieldOfView":50.0}}

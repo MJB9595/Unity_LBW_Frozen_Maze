@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 24199,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://scene/cameras",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":null,\"error\":null,\"data\":{\"brain\":{\"exists\":true,\"gameObject\":\"Main Camera\",\"instanceID\":62022,\"activeCameraName\":null,\"activeCameraID\":null,\"isBlending\":false},\"cinemachineCameras\":[{\"instanceID\":59712,\"name\":\"NormalCam\",\"isLive\":false,\"priority\":1000,\"follow\":{\"name\":\"Jammo_Player\",\"instanceID\":64198},\"lookAt\":{\"name\":\"Jammo_Player\",\"instanceID\":64198},\"body\":\"CinemachineFollow\",\"aim\":\"CinemachineRotationComposer\",\"noise\":null,\"extensions\":[\"CinemachineDeoccluder\"]}],\"unityCameras\":[{\"instanceID\":62022,\"name\":\"Main Camera\",\"depth\":-1.0,\"fieldOfView\":40.0,\"hasBrain\":true}],\"cinemachineInstalled\":true},\"hint\":null}"
+      }
+    ]
+  }
+}

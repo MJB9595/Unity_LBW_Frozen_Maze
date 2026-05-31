@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 24490,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://scene/gameobject/64198",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":null,\"error\":null,\"data\":{\"instanceID\":64198,\"name\":\"Jammo_Player\",\"tag\":\"Player\",\"layer\":3,\"layerName\":\"Player\",\"active\":true,\"activeInHierarchy\":true,\"isStatic\":false,\"transform\":{\"position\":{\"x\":-152.0,\"y\":19.1,\"z\":164.0},\"localPosition\":{\"x\":-152.0,\"y\":19.1,\"z\":164.0},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"localRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"scale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"lossyScale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0}},\"parent\":null,\"children\":[64214,64144,64332,64140,64048,64270,64430,64078,64150,64216,64312,64268,64340,64348,64404,64232,64054,64100,64286,64248,64240,64222,64302,64118,64246,64096],\"componentTypes\":[\"Transform\",\"Animator\",\"CharacterController\",\"CharacterSkinController\",\"MovementInput\",\"WallMerge\",\"PlayerFootsteps\",\"AudioSource\",\"Health\"],\"path\":\"Jammo_Player\"},\"hint\":null}"
+      }
+    ]
+  }
+}

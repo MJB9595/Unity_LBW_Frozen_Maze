@@ -1,0 +1,12 @@
+{
+    "asset": "ce7628c5b89c94b4f8a9e1fe2375fbcf",
+    "fileName": "019e1644-eeec-7577-a0cf-8bbbc98dd987_Preview.jpg",
+    "prompt": "stylized hand-painted dark grey rock wall texture, seamless, tileable, medieval game style, high detail",
+    "negativePrompt": "",
+    "model": "hand-painted-textures-2-0",
+    "modelName": "Hand Painted Textures 2.0",
+    "customSeed": 1317088127,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation"
+}

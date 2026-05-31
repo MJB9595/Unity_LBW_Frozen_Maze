@@ -1,0 +1,17 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1157901880,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":false,\"message\":\"types must be a list, got str. If passing as JSON string, use format: '[\\\"error\\\", \\\"warning\\\"]'\"}"
+      }
+    ],
+    "structuredContent": {
+      "success": false,
+      "message": "types must be a list, got str. If passing as JSON string, use format: '[\"error\", \"warning\"]'"
+    },
+    "isError": false
+  }
+}

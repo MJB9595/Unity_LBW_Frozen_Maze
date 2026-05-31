@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 31639,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://project/info",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":\"Retrieved project info.\",\"error\":null,\"data\":{\"projectRoot\":\"/Users/mjb/AI-WorkSpace/WorkSpace/Unity_LBW_Frozen_Maze\",\"projectName\":\"Unity_LBW_Frozen_Maze\",\"unityVersion\":\"6000.3.11f1\",\"platform\":\"StandaloneOSX\",\"assetsPath\":\"/Users/mjb/AI-WorkSpace/WorkSpace/Unity_LBW_Frozen_Maze/Assets\"},\"hint\":null}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1063280608,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Retrieved 8 log entries.\",\"data\":[\"Assets/AN Interactive Physical Door Pack/Scripts/AN_DoorKey.cs(18,16): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'\",\"Assets/AN Interactive Physical Door Pack/Scripts/AN_DoorScript.cs(44,27): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'\",\"Assets/MountainPalace_Pack_Free/HDRP/Scripts/ReplaceWithPrefab.cs(26,34): warning CS0618: 'PrefabUtility.GetPrefabType(Object)' is obsolete: 'Use GetPrefabAssetType and GetPrefabInstanceStatus to get the full picture about Prefab types.'\",\"Assets/MountainPalace_Pack_Free/HDRP/Scripts/ReplaceWithPrefab.cs(29,35): warning CS0618: 'PrefabType' is obsolete: 'PrefabType no longer tells everything about Prefab instance.'\",\"Assets/Scripts/Mario64Camera.cs(222,57): error CS0023: Operator '-' cannot be applied to operand of type 'Quaternion'\",\"Assets/Sun_Temple/PostProcessing/Runtime/Components/MotionBlurComponent.cs(350,60): warning CS0618: 'GraphicsDeviceType.OpenGLES2' is obsolete: 'OpenGL ES 2.0 is no longer supported in Unity 2023.1'\",\"Assets/Scripts/BossFollow.cs(15,36): warning CS0414: The field 'BossFollow.animSpeedParamScale' is assigned but its value is never used\",\"Assets/Scripts/BossCombat.cs(9,36): warning CS0414: The field 'BossCombat.damage' is assigned but its value is never used\"]}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Retrieved 8 log entries.",
+      "data": [
+        "Assets/AN Interactive Physical Door Pack/Scripts/AN_DoorKey.cs(18,16): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'",
+        "Assets/AN Interactive Physical Door Pack/Scripts/AN_DoorScript.cs(44,27): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindFirstObjectByType instead or if finding any instance is acceptable the faster Object.FindAnyObjectByType'",
+        "Assets/MountainPalace_Pack_Free/HDRP/Scripts/ReplaceWithPrefab.cs(26,34): warning CS0618: 'PrefabUtility.GetPrefabType(Object)' is obsolete: 'Use GetPrefabAssetType and GetPrefabInstanceStatus to get the full picture about Prefab types.'",
+        "Assets/MountainPalace_Pack_Free/HDRP/Scripts/ReplaceWithPrefab.cs(29,35): warning CS0618: 'PrefabType' is obsolete: 'PrefabType no longer tells everything about Prefab instance.'",
+        "Assets/Scripts/Mario64Camera.cs(222,57): error CS0023: Operator '-' cannot be applied to operand of type 'Quaternion'",
+        "Assets/Sun_Temple/PostProcessing/Runtime/Components/MotionBlurComponent.cs(350,60): warning CS0618: 'GraphicsDeviceType.OpenGLES2' is obsolete: 'OpenGL ES 2.0 is no longer supported in Unity 2023.1'",
+        "Assets/Scripts/BossFollow.cs(15,36): warning CS0414: The field 'BossFollow.animSpeedParamScale' is assigned but its value is never used",
+        "Assets/Scripts/BossCombat.cs(9,36): warning CS0414: The field 'BossCombat.damage' is assigned but its value is never used"
+      ]
+    },
+    "isError": false
+  }
+}

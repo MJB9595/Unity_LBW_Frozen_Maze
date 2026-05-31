@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 31544,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://pipeline/renderer-features",
+        "mimeType": "text/plain",
+        "text": "{\"success\":false,\"message\":null,\"error\":\"Could not find URP ScriptableRendererData. Ensure URP is active.\",\"data\":null,\"hint\":null}"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 27873,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://scene/gameobject/62338",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":null,\"error\":null,\"data\":{\"instanceID\":62338,\"name\":\"Trigger\",\"tag\":\"Untagged\",\"layer\":0,\"layerName\":\"Default\",\"active\":true,\"activeInHierarchy\":true,\"isStatic\":false,\"transform\":{\"position\":{\"x\":1014.55,\"y\":1.58,\"z\":4.52},\"localPosition\":{\"x\":1014.55,\"y\":1.58,\"z\":4.52},\"rotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"localRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"scale\":{\"x\":0.5,\"y\":3.0,\"z\":1.0},\"lossyScale\":{\"x\":0.5,\"y\":3.0,\"z\":1.0}},\"parent\":null,\"children\":[],\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\",\"BoxCollider\",\"GapTrigger\"],\"path\":\"Trigger\"},\"hint\":null}"
+      }
+    ]
+  }
+}

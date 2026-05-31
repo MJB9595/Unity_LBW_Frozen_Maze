@@ -1,0 +1,13 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2432,
+  "result": {
+    "contents": [
+      {
+        "uri": "mcpforunity://scene/gameobject/63042",
+        "mimeType": "text/plain",
+        "text": "{\"success\":true,\"message\":null,\"error\":null,\"data\":{\"instanceID\":63042,\"name\":\"EdgeSearch\",\"tag\":\"Untagged\",\"layer\":0,\"layerName\":\"Default\",\"active\":true,\"activeInHierarchy\":true,\"isStatic\":false,\"transform\":{\"position\":{\"x\":-84.12146,\"y\":23.7595749,\"z\":136.508911},\"localPosition\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"rotation\":{\"x\":0.0,\"y\":353.542145,\"z\":0.0},\"localRotation\":{\"x\":0.0,\"y\":0.0,\"z\":0.0},\"scale\":{\"x\":1.0,\"y\":1.0,\"z\":1.0},\"lossyScale\":{\"x\":9.999999,\"y\":10.0,\"z\":9.999999}},\"parent\":62452,\"children\":[],\"componentTypes\":[\"Transform\",\"RaySearch\"],\"path\":\"Medieval_Castle_Set/Castle/TowerB (9)/EdgeSearch\"},\"hint\":null}"
+      }
+    ]
+  }
+}

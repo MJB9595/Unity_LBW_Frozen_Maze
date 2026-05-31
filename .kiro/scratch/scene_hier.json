@@ -1,0 +1,612 @@
+{
+  "jsonrpc": "2.0",
+  "id": 681747286,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":true,\"message\":\"Retrieved hierarchy page for scene 'Stage_4'.\",\"data\":{\"scope\":\"roots\",\"cursor\":0,\"pageSize\":50,\"next_cursor\":null,\"truncated\":false,\"total\":30,\"items\":[{\"name\":\"Main Camera\",\"instanceID\":62022,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"MainCamera\",\"layer\":0,\"isStatic\":false,\"path\":\"Main Camera\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"Camera\",\"AudioListener\",\"HDAdditionalCameraData\",\"CinemachineBrain\",\"CinemachineImpulseSource\",\"Mario64Camera\"]},{\"name\":\"Frame\",\"instanceID\":59668,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Frame\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\"]},{\"name\":\"Jammo_Player\",\"instanceID\":64198,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Player\",\"layer\":3,\"isStatic\":false,\"path\":\"Jammo_Player\",\"childCount\":26,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"Animator\",\"CharacterController\",\"CharacterSkinController\",\"MovementInput\",\"WallMerge\",\"PlayerFootsteps\",\"AudioSource\",\"Health\"]},{\"name\":\"Directional Light\",\"instanceID\":63672,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Directional Light\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"Light\",\"HDAdditionalLightData\"]},{\"name\":\"Sky and Fog Volume\",\"instanceID\":59696,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Sky and Fog Volume\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"Volume\"]},{\"name\":\"Post Process Volume\",\"instanceID\":60458,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Post Process Volume\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"Volume\"]},{\"name\":\"Example Assets\",\"instanceID\":62302,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Example Assets\",\"childCount\":2,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\"]},{\"name\":\"StaticLightingSky\",\"instanceID\":59948,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"StaticLightingSky\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"StaticLightingSky\"]},{\"name\":\"Cube\",\"instanceID\":59974,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":true,\"path\":\"Cube\",\"childCount\":1,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\",\"ProBuilderMesh\",\"MeshCollider\"]},{\"name\":\"Cube (1)\",\"instanceID\":62258,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":true,\"path\":\"Cube (1)\",\"childCount\":1,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\",\"ProBuilderMesh\",\"MeshCollider\"]},{\"name\":\"Cube (2)\",\"instanceID\":63966,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":true,\"path\":\"Cube (2)\",\"childCount\":1,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\",\"ProBuilderMesh\",\"MeshCollider\"]},{\"name\":\"Cameras\",\"instanceID\":61630,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Cameras\",\"childCount\":1,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\"]},{\"name\":\"ProjectorController\",\"instanceID\":61078,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"ProjectorController\",\"childCount\":4,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"Animator\",\"ProjectorMovement\"]},{\"name\":\"Density Volume\",\"instanceID\":62730,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Density Volume\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"LocalVolumetricFog\"]},{\"name\":\"PivotAndPoints\",\"instanceID\":60814,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"PivotAndPoints\",\"childCount\":3,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\"]},{\"name\":\"ExtraProfiles\",\"instanceID\":62096,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"ExtraProfiles\",\"childCount\":2,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\"]},{\"name\":\"Cylinder\",\"instanceID\":61008,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Cylinder\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\",\"ProBuilderMesh\",\"MeshCollider\"]},{\"name\":\"Cube\",\"instanceID\":60760,\"activeSelf\":false,\"activeInHierarchy\":false,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Cube\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\",\"ProBuilderMesh\",\"MeshCollider\"]},{\"name\":\"Trigger\",\"instanceID\":62338,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Trigger\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\",\"BoxCollider\",\"GapTrigger\"]},{\"name\":\"Trigger (1)\",\"instanceID\":61784,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Trigger (1)\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\",\"BoxCollider\",\"GapTrigger\"]},{\"name\":\"BossGolem\",\"instanceID\":63336,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"BossGolem\",\"childCount\":2,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"Animator\",\"BossFollow\",\"CapsuleCollider\",\"AudioSource\",\"Health\",\"BossCombat\",\"BossDestruction\",\"Rigidbody\",\"SphereCollider\",\"NavMeshAgent\"]},{\"name\":\"Medieval_Castle_Set\",\"instanceID\":62804,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Medieval_Castle_Set\",\"childCount\":18,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\"]},{\"name\":\"Simple Door Frame\",\"instanceID\":-1574,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Simple Door Frame\",\"childCount\":3,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\",\"BoxCollider\"]},{\"name\":\"Trapdoor_AdjacentToPortal\",\"instanceID\":62208,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Trapdoor_AdjacentToPortal\",\"childCount\":3,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"BoxCollider\"]},{\"name\":\"Wide Stair for wallMerge\",\"instanceID\":60556,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Wide Stair for wallMerge\",\"childCount\":3,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\"]},{\"name\":\"Wide Stair for wallMerge (1)\",\"instanceID\":61260,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Wide Stair for wallMerge (1)\",\"childCount\":3,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\"]},{\"name\":\"NavMeshManager\",\"instanceID\":61578,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"NavMeshManager\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"NavMeshSurface\"]},{\"name\":\"Fragment\",\"instanceID\":61206,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Fragment\",\"childCount\":0,\"childrenTruncated\":false,\"childrenCursor\":null,\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"MeshFilter\",\"MeshRenderer\",\"MeshCollider\",\"Rigidbody\"]},{\"name\":\"Medieval_Environment\",\"instanceID\":61594,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"Medieval_Environment\",\"childCount\":13,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\"]},{\"name\":\"NormalCam\",\"instanceID\":59712,\"activeSelf\":true,\"activeInHierarchy\":true,\"tag\":\"Untagged\",\"layer\":0,\"isStatic\":false,\"path\":\"NormalCam\",\"childCount\":1,\"childrenTruncated\":true,\"childrenCursor\":\"0\",\"childrenPageSizeDefault\":200,\"componentTypes\":[\"Transform\",\"CinemachineCamera\",\"CinemachineFollow\",\"CinemachineRotationComposer\",\"CinemachineDeoccluder\"]}]}}"
+      }
+    ],
+    "structuredContent": {
+      "success": true,
+      "message": "Retrieved hierarchy page for scene 'Stage_4'.",
+      "data": {
+        "scope": "roots",
+        "cursor": 0,
+        "pageSize": 50,
+        "next_cursor": null,
+        "truncated": false,
+        "total": 30,
+        "items": [
+          {
+            "name": "Main Camera",
+            "instanceID": 62022,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "MainCamera",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Main Camera",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "Camera",
+              "AudioListener",
+              "HDAdditionalCameraData",
+              "CinemachineBrain",
+              "CinemachineImpulseSource",
+              "Mario64Camera"
+            ]
+          },
+          {
+            "name": "Frame",
+            "instanceID": 59668,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Frame",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "MeshFilter",
+              "MeshRenderer"
+            ]
+          },
+          {
+            "name": "Jammo_Player",
+            "instanceID": 64198,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Player",
+            "layer": 3,
+            "isStatic": false,
+            "path": "Jammo_Player",
+            "childCount": 26,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "Animator",
+              "CharacterController",
+              "CharacterSkinController",
+              "MovementInput",
+              "WallMerge",
+              "PlayerFootsteps",
+              "AudioSource",
+              "Health"
+            ]
+          },
+          {
+            "name": "Directional Light",
+            "instanceID": 63672,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Directional Light",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "Light",
+              "HDAdditionalLightData"
+            ]
+          },
+          {
+            "name": "Sky and Fog Volume",
+            "instanceID": 59696,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Sky and Fog Volume",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "Volume"
+            ]
+          },
+          {
+            "name": "Post Process Volume",
+            "instanceID": 60458,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Post Process Volume",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "Volume"
+            ]
+          },
+          {
+            "name": "Example Assets",
+            "instanceID": 62302,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Example Assets",
+            "childCount": 2,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform"
+            ]
+          },
+          {
+            "name": "StaticLightingSky",
+            "instanceID": 59948,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "StaticLightingSky",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "StaticLightingSky"
+            ]
+          },
+          {
+            "name": "Cube",
+            "instanceID": 59974,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": true,
+            "path": "Cube",
+            "childCount": 1,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "MeshFilter",
+              "MeshRenderer",
+              "ProBuilderMesh",
+              "MeshCollider"
+            ]
+          },
+          {
+            "name": "Cube (1)",
+            "instanceID": 62258,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": true,
+            "path": "Cube (1)",
+            "childCount": 1,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "MeshFilter",
+              "MeshRenderer",
+              "ProBuilderMesh",
+              "MeshCollider"
+            ]
+          },
+          {
+            "name": "Cube (2)",
+            "instanceID": 63966,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": true,
+            "path": "Cube (2)",
+            "childCount": 1,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "MeshFilter",
+              "MeshRenderer",
+              "ProBuilderMesh",
+              "MeshCollider"
+            ]
+          },
+          {
+            "name": "Cameras",
+            "instanceID": 61630,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Cameras",
+            "childCount": 1,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform"
+            ]
+          },
+          {
+            "name": "ProjectorController",
+            "instanceID": 61078,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "ProjectorController",
+            "childCount": 4,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "Animator",
+              "ProjectorMovement"
+            ]
+          },
+          {
+            "name": "Density Volume",
+            "instanceID": 62730,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Density Volume",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "LocalVolumetricFog"
+            ]
+          },
+          {
+            "name": "PivotAndPoints",
+            "instanceID": 60814,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "PivotAndPoints",
+            "childCount": 3,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform"
+            ]
+          },
+          {
+            "name": "ExtraProfiles",
+            "instanceID": 62096,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "ExtraProfiles",
+            "childCount": 2,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform"
+            ]
+          },
+          {
+            "name": "Cylinder",
+            "instanceID": 61008,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Cylinder",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "MeshFilter",
+              "MeshRenderer",
+              "ProBuilderMesh",
+              "MeshCollider"
+            ]
+          },
+          {
+            "name": "Cube",
+            "instanceID": 60760,
+            "activeSelf": false,
+            "activeInHierarchy": false,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Cube",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "MeshFilter",
+              "MeshRenderer",
+              "ProBuilderMesh",
+              "MeshCollider"
+            ]
+          },
+          {
+            "name": "Trigger",
+            "instanceID": 62338,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Trigger",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "MeshFilter",
+              "MeshRenderer",
+              "BoxCollider",
+              "GapTrigger"
+            ]
+          },
+          {
+            "name": "Trigger (1)",
+            "instanceID": 61784,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Trigger (1)",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "MeshFilter",
+              "MeshRenderer",
+              "BoxCollider",
+              "GapTrigger"
+            ]
+          },
+          {
+            "name": "BossGolem",
+            "instanceID": 63336,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "BossGolem",
+            "childCount": 2,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "Animator",
+              "BossFollow",
+              "CapsuleCollider",
+              "AudioSource",
+              "Health",
+              "BossCombat",
+              "BossDestruction",
+              "Rigidbody",
+              "SphereCollider",
+              "NavMeshAgent"
+            ]
+          },
+          {
+            "name": "Medieval_Castle_Set",
+            "instanceID": 62804,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Medieval_Castle_Set",
+            "childCount": 18,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform"
+            ]
+          },
+          {
+            "name": "Simple Door Frame",
+            "instanceID": -1574,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Simple Door Frame",
+            "childCount": 3,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "MeshFilter",
+              "MeshRenderer",
+              "BoxCollider"
+            ]
+          },
+          {
+            "name": "Trapdoor_AdjacentToPortal",
+            "instanceID": 62208,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Trapdoor_AdjacentToPortal",
+            "childCount": 3,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "BoxCollider"
+            ]
+          },
+          {
+            "name": "Wide Stair for wallMerge",
+            "instanceID": 60556,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Wide Stair for wallMerge",
+            "childCount": 3,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform"
+            ]
+          },
+          {
+            "name": "Wide Stair for wallMerge (1)",
+            "instanceID": 61260,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Wide Stair for wallMerge (1)",
+            "childCount": 3,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform"
+            ]
+          },
+          {
+            "name": "NavMeshManager",
+            "instanceID": 61578,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "NavMeshManager",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "NavMeshSurface"
+            ]
+          },
+          {
+            "name": "Fragment",
+            "instanceID": 61206,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Fragment",
+            "childCount": 0,
+            "childrenTruncated": false,
+            "childrenCursor": null,
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "MeshFilter",
+              "MeshRenderer",
+              "MeshCollider",
+              "Rigidbody"
+            ]
+          },
+          {
+            "name": "Medieval_Environment",
+            "instanceID": 61594,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "Medieval_Environment",
+            "childCount": 13,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform"
+            ]
+          },
+          {
+            "name": "NormalCam",
+            "instanceID": 59712,
+            "activeSelf": true,
+            "activeInHierarchy": true,
+            "tag": "Untagged",
+            "layer": 0,
+            "isStatic": false,
+            "path": "NormalCam",
+            "childCount": 1,
+            "childrenTruncated": true,
+            "childrenCursor": "0",
+            "childrenPageSizeDefault": 200,
+            "componentTypes": [
+              "Transform",
+              "CinemachineCamera",
+              "CinemachineFollow",
+              "CinemachineRotationComposer",
+              "CinemachineDeoccluder"
+            ]
+          }
+        ]
+      }
+    },
+    "isError": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "jsonrpc": "2.0",
+  "id": 438707665,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"success\":false,\"message\":\"Unknown action 'get_build_settings'. Valid actions: build, status, platform, settings, scenes, profiles, batch, cancel\"}"
+      }
+    ],
+    "structuredContent": {
+      "success": false,
+      "message": "Unknown action 'get_build_settings'. Valid actions: build, status, platform, settings, scenes, profiles, batch, cancel"
+    },
+    "isError": false
+  }
+}
