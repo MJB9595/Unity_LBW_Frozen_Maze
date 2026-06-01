@@ -1,0 +1,12 @@
+{
+  "name": "PlayerFootsteps",
+  "path": "Assets/Scripts/PlayerFootsteps.cs",
+  "edits": [
+    {
+      "op": "anchor_replace",
+      "anchor": "audioSource\\.PlayOneShot\\(footstepClip, 0\\.4f\\);",
+      "text": "                audioSource.PlayOneShot(footstepClip, 0.2f);"
+    }
+  ],
+  "options": { "validate": "standard", "refresh": "immediate" }
+}

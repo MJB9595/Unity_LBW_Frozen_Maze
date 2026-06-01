@@ -1,0 +1,4 @@
+{
+  "action": "execute",
+  "code": "var tower = UnityEditor.EditorUtility.InstanceIDToObject(61768) as GameObject; var es = tower.transform.Find(\"EdgeSearch\"); if(es==null) return \"ERR no EdgeSearch\"; var rs = es.GetComponent<RaySearch>(); var col = tower.GetComponent<Collider>(); var b = col.bounds; Vector3 outside = new Vector3(b.center.x, 25.5f, b.max.z + 3f); Vector3 dir = new Vector3(0,0,-1f); RaycastHit hit; bool didHit = Physics.Raycast(outside, dir, out hit, 10f); string hitName = didHit ? hit.collider.gameObject.name : \"<none>\"; if(!didHit) return new { step=\"raycast\", hit=false, note=\"no wall hit from test origin\" }; rs.cornerPoints.Clear(); rs.meshPoints.Clear(); rs.mergeMode = WallMerge.WallMergeMode.Current; rs.DoPointsFromPlayer(outside, dir); return new { hitWall = hitName, hitIsTower = (hit.collider.gameObject==tower), meshPoints = rs.meshPoints.Count, cornerPoints = rs.cornerPoints.Count, closedLoop = rs.IsClosedLoop };"
+}

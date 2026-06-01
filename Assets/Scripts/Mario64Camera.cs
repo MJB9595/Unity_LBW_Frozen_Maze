@@ -158,49 +158,43 @@ public class Mario64Camera : MonoBehaviour
         float targetYaw = target.eulerAngles.y;
         currentYaw = Mathf.SmoothDampAngle(currentYaw, targetYaw, ref yawVelocity, yawSmoothTime);
 
-        // ── 이상적 카메라 위치: 플레이어 뒤에서 distance만큼 떨어진 곳 ─────
-        // currentYaw 방향의 forward를 구해서 그 반대로 distance만큼 이동.
+        // ── 등 뒤 방향(수평, 정규화) ─────────────────────────
         // (Unity 기준 yaw=0일 때 forward는 +Z, yaw가 회전하면 forward도 회전)
         Quaternion yawRot = Quaternion.Euler(0f, currentYaw, 0f);
         Vector3 fwd = yawRot * Vector3.forward;        // 플레이어가 바라보는 방향
-        Vector3 backOffset = -fwd * distance;          // 그 반대 = 등 뒤
-        backOffset.y = 0f;
-        Vector3 idealHorizPos = new Vector3(target.position.x, 0f, target.position.z) + new Vector3(backOffset.x, 0f, backOffset.z);
+        Vector3 backDir = -fwd;                        // 그 반대 = 등 뒤
+        backDir.y = 0f;
+        if (backDir.sqrMagnitude < 0.0001f) backDir = -transform.forward;
+        backDir.Normalize();
 
-        Vector3 currentHoriz = new Vector3(transform.position.x, 0f, transform.position.z);
-        Vector3 newHoriz = Vector3.SmoothDamp(currentHoriz, idealHorizPos, ref horizPosVelocity, positionSmoothTime);
+        Vector3 lookHoriz = new Vector3(lookAtPoint.x, 0f, lookAtPoint.z);
 
         // ── 높이 추적 ────────────────────────────────────
         float targetY = target.position.y + height;
         float newY = Mathf.SmoothDamp(transform.position.y, targetY, ref verticalPosVelocity, heightSmoothTime);
 
-        Vector3 candidatePos = new Vector3(newHoriz.x, newY, newHoriz.z);
+        // ── 충돌 검사용 이상(최대거리) 카메라 위치 ─────────────
+        Vector3 fullDesiredHoriz = lookHoriz + backDir * distance;
+        Vector3 fullDesiredPos = new Vector3(fullDesiredHoriz.x, newY, fullDesiredHoriz.z);
 
-        // ── 충돌 보정 ────────────────────────────────────
-        float resolvedDistance = (collisionGraceTimer > 0f)
+        float targetDistance = (collisionGraceTimer > 0f)
             ? distance
-            : ResolveCollision(lookAtPoint, candidatePos);
+            : ResolveCollision(lookAtPoint, fullDesiredPos);
 
-        bool occluded = resolvedDistance < distance - 0.01f;
+        // 가려짐 여부에 따라 당김/복귀 속도만 다르게 적용.
+        // ★ 핵심: 카메라 위치는 항상 "방향 × 거리"라는 동일한 공식으로 계산하므로
+        //   occluded가 매 프레임 토글되어도 currentDistance만 부드럽게 변해
+        //   위치 점프(부들거림)가 발생하지 않는다.
+        bool occluded = targetDistance < distance - 0.01f;
         float distSmoothTime = occluded ? collisionDamping : recoveryDamping;
-        currentDistance = Mathf.SmoothDamp(currentDistance, resolvedDistance, ref distanceVelocity, distSmoothTime);
+        currentDistance = Mathf.SmoothDamp(currentDistance, targetDistance, ref distanceVelocity, distSmoothTime);
 
-        if (occluded)
-        {
-            // 가려진 경우 lookAtPoint 기준 currentDistance만큼 당김
-            Vector3 dirFromTarget = candidatePos - lookAtPoint;
-            Vector3 horizDir = new Vector3(dirFromTarget.x, 0f, dirFromTarget.z);
-            float horizMag = horizDir.magnitude;
-            if (horizMag > 0.001f)
-            {
-                horizDir /= horizMag;
-                Vector3 occludedHoriz = new Vector3(lookAtPoint.x, 0f, lookAtPoint.z) + horizDir * currentDistance;
-                candidatePos.x = occludedHoriz.x;
-                candidatePos.z = occludedHoriz.z;
-            }
-        }
+        // ── 최종 위치: 항상 동일한 공식(방향 × 거리) ─────────────
+        Vector3 rigidHoriz = lookHoriz + backDir * currentDistance;
+        Vector3 currentHoriz = new Vector3(transform.position.x, 0f, transform.position.z);
+        Vector3 newHoriz = Vector3.SmoothDamp(currentHoriz, rigidHoriz, ref horizPosVelocity, positionSmoothTime);
 
-        transform.position = candidatePos;
+        transform.position = new Vector3(newHoriz.x, newY, newHoriz.z);
         transform.LookAt(lookAtPoint);
     }
 

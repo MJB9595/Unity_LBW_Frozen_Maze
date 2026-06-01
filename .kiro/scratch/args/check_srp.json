@@ -1,0 +1,4 @@
+{
+  "action": "execute",
+  "code": "var rp = UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline; string pipe = rp == null ? \"BuiltIn\" : rp.GetType().Name; bool urpLit = Shader.Find(\"Universal Render Pipeline/Lit\") != null; bool hdrpLit = Shader.Find(\"HDRP/Lit\") != null; bool std = Shader.Find(\"Standard\") != null; return new { pipeline = pipe, urpLit, hdrpLit, standard = std };"
+}

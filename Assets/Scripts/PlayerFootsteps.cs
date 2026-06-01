@@ -34,7 +34,7 @@ public class PlayerFootsteps : MonoBehaviour
 
             if (distanceTraveled >= currentThreshold)
             {
-                audioSource.PlayOneShot(footstepClip, 0.4f);
+                audioSource.PlayOneShot(footstepClip, 0.2f);
                 distanceTraveled = 0f;
             }
         }

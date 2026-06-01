@@ -1,0 +1,4 @@
+{
+  "action": "execute",
+  "code": "var tower = UnityEditor.EditorUtility.InstanceIDToObject(61768) as GameObject; var es = tower.transform.Find(\"EdgeSearch\"); var rs = es.GetComponent<RaySearch>(); rs.cornerPoints.Clear(); rs.meshPoints.Clear(); UnityEditor.EditorUtility.SetDirty(rs); UnityEditor.EditorUtility.SetDirty(es.gameObject); var scene = tower.scene; UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(scene); bool saved = UnityEditor.SceneManagement.EditorSceneManager.SaveScene(scene); return new { sceneName = scene.name, scenePath = scene.path, saved = saved, meshPoints = rs.meshPoints.Count, cornerPoints = rs.cornerPoints.Count };"
+}

@@ -1,0 +1,4 @@
+{
+  "action": "execute",
+  "code": "var go = UnityEditor.EditorUtility.InstanceIDToObject(62492) as GameObject; var r = go.GetComponent<Renderer>(); var b = r.bounds; return new { center = b.center, min = b.min, max = b.max, size = b.size, top = b.max.y };"
+}

@@ -1,0 +1,4 @@
+{
+  "action": "execute",
+  "code": "var m=UnityEditor.EditorUtility.InstanceIDToObject(-72552) as GameObject; if(m==null){ var all=GameObject.Find(\"Meteor\"); m=all; } var mr=m.GetComponent<Renderer>(); var b=mr.bounds; var tower=UnityEditor.EditorUtility.InstanceIDToObject(62492) as GameObject; var tb=tower.GetComponent<Renderer>().bounds; float gap=b.min.y-tb.max.y; bool overX=b.min.x<tb.max.x&&b.max.x>tb.min.x; bool overZ=b.min.z<tb.max.z&&b.max.z>tb.min.z; return new { meteorName=m.name, meteorBottom=b.min.y, towerTop=tb.max.y, verticalGap=gap, overlapsTowerFootprint=(overX&&overZ), tris=m.GetComponent<MeshFilter>().sharedMesh.triangles.Length/3 };"
+}
