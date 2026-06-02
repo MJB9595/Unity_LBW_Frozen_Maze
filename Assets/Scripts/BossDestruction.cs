@@ -9,6 +9,8 @@ public class BossDestruction : MonoBehaviour
 
     [Header("OpenFracture Settings")]
     [SerializeField] [Range(5, 100)] private int fragmentCount = 40;
+    [Tooltip("골렘 붕괴 마커가 붙은 '타워'만 이 개수로 더 잘게 부순다(내부 타워 한정)")]
+    [SerializeField] [Range(5, 200)] private int towerFragmentCount = 90;
     [SerializeField] private Material insideMaterial;
     [SerializeField] private float explosionForce = 600f;
     [SerializeField] private float explosionRadius = 3f;
@@ -102,6 +104,10 @@ public class BossDestruction : MonoBehaviour
 
     private bool IsStaticCrackObject(GameObject obj)
     {
+        // GolemCollapsible 마커가 붙은 구조물은 "집"처럼 실제 붕괴(fracture)시킨다 → 데칼 처리 제외
+        if (obj.GetComponentInParent<GolemCollapsible>() != null)
+            return false;
+
         string lowerName = obj.name.ToLower();
         bool isArchitectural = lowerName.Contains("wall") || lowerName.Contains("tower") || lowerName.Contains("castle");
         
@@ -156,20 +162,25 @@ public class BossDestruction : MonoBehaviour
         if (Mathf.Abs(lossy.x) < 0.01f || Mathf.Abs(lossy.y) < 0.01f || Mathf.Abs(lossy.z) < 0.01f)
             return;
 
+        // 골렘 붕괴 마커가 붙은 '타워'(내부 타워)만 더 잘게 부순다. 외곽 대포 타워/다리/성은 기본값 유지.
+        bool isCollapsibleTower = obj.name.ToLower().Contains("tower")
+                                  && obj.GetComponentInParent<GolemCollapsible>() != null;
+        int countToUse = isCollapsibleTower ? towerFragmentCount : fragmentCount;
+
         Fracture fracture = obj.GetComponent<Fracture>();
         if (fracture == null)
         {
             fracture = obj.AddComponent<Fracture>();
             fracture.triggerOptions = new TriggerOptions { triggerType = TriggerType.Collision };
-            
+
             // Priority: 1. Manually assigned insideMaterial, 2. Original material of the object
             Material materialToUse = insideMaterial != null ? insideMaterial : fallbackMaterial;
 
-            // If we still don't have a material, it might stay purple. 
+            // If we still don't have a material, it might stay purple.
             // In HDRP, we must ensure the material is compatible.
-            fracture.fractureOptions = new FractureOptions 
-            { 
-                fragmentCount = fragmentCount, 
+            fracture.fractureOptions = new FractureOptions
+            {
+                fragmentCount = countToUse,
                 asynchronous = false,
                 xAxis = true, yAxis = true, zAxis = true,
                 insideMaterial = materialToUse
